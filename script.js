@@ -64,19 +64,31 @@ const app = {
     Мониторинг
 `,
         tchart: `
-ТЕРМИН: DEEP LEARNING
+ТЕРМИН: ГЛУБОКОЕ ОБУЧЕНИЕ (DEEP LEARNING)
 
 ПЛЮСЫ
-Высокая точность на больших данных
-Автоматическое извлечение признаков
-Работа с фото и текстом
-State-of-the-art результаты
+Высочайшая точность на больших объемах данных
+Очень низкое смещение (Low Bias) модели
+Автоматическое извлечение сложных признаков
+Способность моделировать нелинейные зависимости
+State-of-the-art результаты в работе с фото и текстом
+Универсальность (аппроксимация любой функции)
+Возможность использования Transfer Learning
+Масштабируемость (качество растет с данными)
+Гибкость архитектуры под конкретную задачу
+Отсутствие ручного Feature Engineering
 
 МИНУСЫ
-Огромный риск переобучения
-Требуют мощных GPU
-"Черный ящик" (сложная интерпретация)
-Нужны миллионы примеров
+Огромный риск переобучения (High Variance)
+Требуют миллионов размеченных примеров
+Модель запоминает шум вместо полезного сигнала
+Проблема "Черного ящика" (неинтерпретируемость)
+Высокая стоимость обучения (нужны мощные GPU)
+Долгое время обучения и инференса
+Сложность настройки гиперпараметров
+Нестабильность (чувствительность к инициализации)
+Уязвимость к состязательным атакам (Adversarial)
+Плохая работа при малом количестве данных
 `,
         scamper: `
 # Модификация | Исходное | Новое | Итог
@@ -142,7 +154,7 @@ Reverse | Все слои | Fine-tuning | Тонкая настройка
 Простота, Отбор фич, Для DeepLearning, Скорость, Интерпретация
 
 # Методы и Оценки
-L1 (Lasso): +, +, -, +, -
+L1 (Lasso): +, +, -, +, +
 L2 (Ridge): +, -, +, +, -
 Dropout: +, -, +, +, -
 Early Stop: +, -, +, +, +
@@ -150,29 +162,41 @@ Early Stop: +, -, +, +, +
 ИТОГ: Early Stopping побеждает (4 плюса) как самый универсальный.
 `,
         swot: `
-ПРЕДМЕТ: Deep Learning на малых данных
+ПРЕДМЕТ: Применение Deep Learning на малом наборе данных
 
 STRENGTHS
-• Потенциал высокой точности
-• Поиск нелинейных паттернов
-• Transfer Learning
+• Возможность использования Transfer Learning (перенос знаний)
+• Способность улавливать сложные нелинейные зависимости
+• Автоматическое извлечение признаков (Feature Extraction)
+• Потенциально более высокая точность, чем у классического ML
+• Гибкость архитектуры под специфику задачи
+• Возможность дообучения (Fine-tuning) под узкий домен
 
 WEAKNESSES
-• Гарантированное переобучение
-• Сложность настройки
-• Высокая стоимость
+• Критически высокий риск переобучения (Overfitting)
+• Модель просто "зазубривает" примеры вместо обучения
+• Нестабильность метрик из-за маленькой валидационной выборки
+• Сложность настройки гиперпараметров (нужен опыт)
+• Высокая вычислительная стоимость для простых задач
+• "Черный ящик" — невозможно объяснить ошибки бизнесу
 
 OPPORTUNITIES
-• Аугментация (синтетика)
-• Жесткая регуляризация
-• Сбор новых данных
+• Использование агрессивной Аугментации данных
+• Генерация синтетических данных (GAN, SMOTE)
+• Применение сильной регуляризации (High Dropout, Weight Decay)
+• Использование методов Few-Shot Learning
+• Ансамблирование моделей для снижения дисперсии
+• Внедрение активного обучения (Active Learning) для разметки
 
 THREATS
-• Запоминание шума
-• Провал в продакшене
-• Data Drift
+• Смещение выборки (Sample Bias) — данные не отражают реальность
+• Катастрофическое влияние выбросов и шума на веса
+• Data Drift (сдвиг данных) моментально сломает модель в проде
+• Простые модели (Random Forest, SVM) могут оказаться эффективнее
+• Ложная уверенность в качестве из-за высокой точности на Train
+• Атаки на модель (Adversarial Attacks) из-за неустойчивости
 
-ИТОГ: Риск высок. Рекомендуется начать с Random Forest.
+ИТОГ: Экстремально высокий риск переобучения (High Variance). Использовать только при наличии мощной стратегии регуляризации.
 `,
         lotus: `
 ЦЕНТР: БОРЬБА С ПЕРЕОБУЧЕНИЕМ
@@ -283,7 +307,10 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
         const lines = raw.split('\n');
         const term = lines[1].replace('ТЕРМИН:','').trim();
         let l=[], r=[], cur=null;
-        lines.forEach(x=>{ if(x.includes('ПЛЮСЫ')) cur=l; else if(x.includes('МИНУСЫ')) cur=r; else if(x.trim() && cur && !x.includes('ТЕРМИН')) cur.push(x.trim()); });
+        lines.forEach(x=>{
+            if(x.includes('ПЛЮСЫ')) cur=l; else if(x.includes('МИНУСЫ')) cur=r;
+            else if(x.trim() && cur && !x.includes('ТЕРМИН')) cur.push(x.trim());
+        });
         return `<div class="t-container"><div class="t-header">${term}</div><div class="t-body"><div class="t-col"><div class="t-title t-plus">ПЛЮСЫ</div>${l.map(i=>`<div class="t-item"><span class="t-bullet t-plus">+ </span>${i}</div>`).join('')}</div><div class="t-col"><div class="t-title t-minus">МИНУСЫ</div>${r.map(i=>`<div class="t-item"><span class="t-bullet t-minus">- </span>${i}</div>`).join('')}</div></div></div>`;
     },
     getHtmlVenn: (raw) => {
@@ -291,11 +318,31 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
         const L = parse('LEFT'), R = parse('RIGHT'), C = parse('CENTER');
         return `<div class="venn-wrapper"><div class="venn-circle v-left"><div class="venn-h" style="color:#1e40af">${L.title}</div><div class="venn-p">${L.text}</div></div><div class="venn-circle v-right"><div class="venn-h" style="color:#991b1b">${R.title}</div><div class="venn-p">${R.text}</div></div><div class="v-intersect">${C.text.replace('Пересечение:','').replace(/\n/g,'<br>')}</div></div>`;
     },
+    
+    // Fixed SWOT Parser
     getHtmlSWOT: (raw) => {
-        const parse = (k) => { const r=new RegExp(`${k}([\\s\\S]*?)(?=[A-Z]+|$)`); const m=raw.match(r); return m?m[1].trim():''; };
-        const list = (t) => `<ul class="swot-list">${t.split('\n').map(l=>`<li>${l.replace(/^[•-]\s*/,'')}</li>`).join('')}</ul>`;
-        return `<h2 style="text-align:center; margin-bottom:20px;">${raw.split('\n')[1].replace('ПРЕДМЕТ:','')}</h2><div class="swot-grid"><div class="swot-card bg-s"><h3>Strengths</h3>${list(parse('STRENGTHS'))}</div><div class="swot-card bg-w"><h3>Weaknesses</h3>${list(parse('WEAKNESSES'))}</div><div class="swot-card bg-o"><h3>Opportunities</h3>${list(parse('OPPORTUNITIES'))}</div><div class="swot-card bg-t"><h3>Threats</h3>${list(parse('THREATS'))}</div></div><div class="swot-footer">${raw.split('ИТОГ:')[1]}</div>`;
+        const lines = raw.split('\n');
+        let s = [], w = [], o = [], t = [], subject = '', total = '';
+        let current = null;
+
+        lines.forEach(line => {
+            const l = line.trim();
+            if(!l) return;
+            
+            if (l.startsWith('ПРЕДМЕТ:')) subject = l.replace('ПРЕДМЕТ:', '').trim();
+            else if (l.startsWith('ИТОГ:')) total = l.replace('ИТОГ:', '').trim();
+            else if (l.includes('STRENGTHS')) current = s;
+            else if (l.includes('WEAKNESSES')) current = w;
+            else if (l.includes('OPPORTUNITIES')) current = o;
+            else if (l.includes('THREATS')) current = t;
+            else if (current) current.push(l.replace(/^[•-]\s*/, ''));
+        });
+
+        const makeList = (arr) => `<ul class="swot-list">${arr.map(x => `<li>${x}</li>`).join('')}</ul>`;
+
+        return `<h2 style="text-align:center; margin-bottom:20px;">${subject}</h2><div class="swot-grid"><div class="swot-card bg-s"><h3>STRENGTHS</h3>${makeList(s)}</div><div class="swot-card bg-w"><h3>WEAKNESSES</h3>${makeList(w)}</div><div class="swot-card bg-o"><h3>OPPORTUNITIES</h3>${makeList(o)}</div><div class="swot-card bg-t"><h3>THREATS</h3>${makeList(t)}</div></div><div class="swot-footer">ИТОГ: ${total}</div>`;
     },
+
     getHtmlLotus: (raw) => {
         const lines=raw.split('\n').filter(l=>l.trim());
         const map = [0, 1, 2, 3, -1, 4, 5, 6, 7];
@@ -308,18 +355,14 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
 
     wrapSvgText: (textSelection, width) => {
         textSelection.each(function() {
-            let text = d3.select(this), words = text.text().split(/\s+/).reverse(), word, line = [], lineNumber = 0, lineHeight = 1.2, y = text.attr("y"), dy = parseFloat(text.attr("dy")||0);
-            let tspan = text.text(null).append("tspan").attr("x", text.attr("x")).attr("y", y).attr("dy", dy + "em");
+            let text = d3.select(this), words = text.text().split(/\s+/).reverse(), word, line = [], lineNumber = 0, lineHeight = 1.2, y = text.attr("y"), dy = parseFloat(text.attr("dy")||0), tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
             while (word = words.pop()) {
                 line.push(word); tspan.text(line.join(" "));
                 if (tspan.node().getComputedTextLength() > width) {
                     line.pop(); tspan.text(line.join(" ")); line = [word];
-                    tspan = text.append("tspan").attr("x", text.attr("x")).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
                 }
             }
-            // Center vertically
-            const totalHeight = (lineNumber + 1) * lineHeight;
-            text.selectAll('tspan').attr('dy', (d, i) => ((i - lineNumber/2) * 1.2 + 0.3) + "em");
         });
     },
 
@@ -343,12 +386,8 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
 
         g.selectAll('line').data(links).enter().append('line').attr("x1", d=>d.source.x).attr("y1", d=>d.source.y).attr("x2", d=>d.target.x).attr("y2", d=>d.target.y).attr("stroke", "#999").attr("stroke-width", 2);
         const node = g.selectAll('g').data(nodes).enter().append('g').attr("transform", d => `translate(${d.x},${d.y})`);
-        
         node.append("ellipse").attr("rx", d=>d.depth===0?100:80).attr("ry", d=>d.depth===0?70:50).attr("fill", d=>d.depth===0?'#2563eb':colors(d.data.name)).attr("stroke", "#333").attr("stroke-width", 2);
-        node.append("text").attr("x", 0).attr("y", 0).attr("text-anchor", "middle")
-            .style("font-family","Roboto").style("font-weight","bold").style("font-size", "12px")
-            .style("fill", d=>d.depth===0?'white':'black')
-            .text(d => d.data.name).call(app.wrapSvgText, 120);
+        node.append("text").attr("dy", 0).attr("text-anchor", "middle").style("font-family","Roboto").style("font-weight","bold").style("font-size", "12px").style("fill", d=>d.depth===0?'white':'black').text(d => d.data.name).call(app.wrapSvgText, 120);
     },
 
     drawMindmap: (c, raw) => {
@@ -364,8 +403,7 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
         g.selectAll('path').data(root.links()).enter().append('path').attr('fill','none').attr('stroke-width', 3).attr('stroke', d => d.source.depth===0 ? color(d.target.data.name) : color(d.source.data.name)).attr('d', d3.linkHorizontal().x(d=>d.y).y(d=>d.x));
         const node = g.selectAll('g').data(root.descendants()).enter().append('g').attr("transform", d => `translate(${d.y},${d.x})`);
         node.append('rect').attr('y',-25).attr('height',50).attr('rx',10).attr('width', 200).attr('fill','white').attr('stroke-width',2).attr('stroke', d => d.depth===0 ? '#333' : (d.depth===1 ? color(d.data.name) : color(d.parent.data.name)));
-        node.append('text').attr('x', 100).attr('y', 0).attr('text-anchor','middle').text(d=>d.data.name)
-            .style("font-family","Roboto").style("font-weight","bold").style("font-size", "12px").call(app.wrapSvgText, 180);
+        node.append('text').attr('x', 100).attr('y', 0).attr('text-anchor','middle').text(d=>d.data.name).style('font-family','Roboto').style('font-weight','bold').style('font-size','12px').call(app.wrapSvgText, 180);
     },
 
     drawFishbone: (c, raw) => {
