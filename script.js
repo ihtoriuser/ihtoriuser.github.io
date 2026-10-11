@@ -161,43 +161,6 @@ Early Stop: +, -, +, +, +
 
 ИТОГ: Early Stopping побеждает (4 плюса) как самый универсальный.
 `,
-        swot: `
-ПРЕДМЕТ: Применение Deep Learning на малом наборе данных
-
-STRENGTHS
-• Возможность использования Transfer Learning (перенос знаний)
-• Способность улавливать сложные нелинейные зависимости
-• Автоматическое извлечение признаков (Feature Extraction)
-• Потенциально более высокая точность, чем у классического ML
-• Гибкость архитектуры под специфику задачи
-• Возможность дообучения (Fine-tuning) под узкий домен
-
-WEAKNESSES
-• Критически высокий риск переобучения (Overfitting)
-• Модель просто "зазубривает" примеры вместо обучения
-• Нестабильность метрик из-за маленькой валидационной выборки
-• Сложность настройки гиперпараметров (нужен опыт)
-• Высокая вычислительная стоимость для простых задач
-• "Черный ящик" — невозможно объяснить ошибки бизнесу
-
-OPPORTUNITIES
-• Использование агрессивной Аугментации данных
-• Генерация синтетических данных (GAN, SMOTE)
-• Применение сильной регуляризации (High Dropout, Weight Decay)
-• Использование методов Few-Shot Learning
-• Ансамблирование моделей для снижения дисперсии
-• Внедрение активного обучения (Active Learning) для разметки
-
-THREATS
-• Смещение выборки (Sample Bias) — данные не отражают реальность
-• Катастрофическое влияние выбросов и шума на веса
-• Data Drift (сдвиг данных) моментально сломает модель в проде
-• Простые модели (Random Forest, SVM) могут оказаться эффективнее
-• Ложная уверенность в качестве из-за высокой точности на Train
-• Атаки на модель (Adversarial Attacks) из-за неустойчивости
-
-ИТОГ: Экстремально высокий риск переобучения (High Variance). Использовать только при наличии мощной стратегии регуляризации.
-`,
         lotus: `
 ЦЕНТР: БОРЬБА С ПЕРЕОБУЧЕНИЕМ
 
@@ -266,13 +229,12 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
         const raw = app.data[app.currentMethod];
         const m = app.currentMethod;
 
-        if(['cinquain', 'tchart', 'scamper', 'venn', 'swot', 'lotus'].includes(m)) {
+        if(['cinquain', 'tchart', 'scamper', 'venn', 'lotus'].includes(m)) {
             let content = '';
             if(m==='cinquain') content = app.getHtmlTable(raw);
             if(m==='tchart') content = app.getHtmlTChart(raw);
             if(m==='scamper') content = app.getHtmlScamper(raw);
             if(m==='venn') content = app.getHtmlVenn(raw);
-            if(m==='swot') content = app.getHtmlSWOT(raw);
             if(m==='lotus') content = app.getHtmlLotus(raw);
             c.innerHTML = `<div class="viz-padding">${content}</div>`;
         } else {
@@ -319,30 +281,6 @@ Learn Rate, Decay, Batch Size, Optimizer, Momentum, Scheduler, Warmup, Grad Clip
         return `<div class="venn-wrapper"><div class="venn-circle v-left"><div class="venn-h" style="color:#1e40af">${L.title}</div><div class="venn-p">${L.text}</div></div><div class="venn-circle v-right"><div class="venn-h" style="color:#991b1b">${R.title}</div><div class="venn-p">${R.text}</div></div><div class="v-intersect">${C.text.replace('Пересечение:','').replace(/\n/g,'<br>')}</div></div>`;
     },
     
-    // Fixed SWOT Parser
-    getHtmlSWOT: (raw) => {
-        const lines = raw.split('\n');
-        let s = [], w = [], o = [], t = [], subject = '', total = '';
-        let current = null;
-
-        lines.forEach(line => {
-            const l = line.trim();
-            if(!l) return;
-            
-            if (l.startsWith('ПРЕДМЕТ:')) subject = l.replace('ПРЕДМЕТ:', '').trim();
-            else if (l.startsWith('ИТОГ:')) total = l.replace('ИТОГ:', '').trim();
-            else if (l.includes('STRENGTHS')) current = s;
-            else if (l.includes('WEAKNESSES')) current = w;
-            else if (l.includes('OPPORTUNITIES')) current = o;
-            else if (l.includes('THREATS')) current = t;
-            else if (current) current.push(l.replace(/^[•-]\s*/, ''));
-        });
-
-        const makeList = (arr) => `<ul class="swot-list">${arr.map(x => `<li>${x}</li>`).join('')}</ul>`;
-
-        return `<h2 style="text-align:center; margin-bottom:20px;">${subject}</h2><div class="swot-grid"><div class="swot-card bg-s"><h3>STRENGTHS</h3>${makeList(s)}</div><div class="swot-card bg-w"><h3>WEAKNESSES</h3>${makeList(w)}</div><div class="swot-card bg-o"><h3>OPPORTUNITIES</h3>${makeList(o)}</div><div class="swot-card bg-t"><h3>THREATS</h3>${makeList(t)}</div></div><div class="swot-footer">ИТОГ: ${total}</div>`;
-    },
-
     getHtmlLotus: (raw) => {
         const lines=raw.split('\n').filter(l=>l.trim());
         const map = [0, 1, 2, 3, -1, 4, 5, 6, 7];

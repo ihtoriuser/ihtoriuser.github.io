@@ -82,16 +82,6 @@ body { margin: 0; font-family: 'Roboto', sans-serif; background: #e2e8f0; height
 .venn-h { font-weight: 900; font-size: 1.5rem; margin-bottom: 10px; }
 .venn-p { font-size: 1rem; line-height: 1.4; white-space: pre-wrap; }
 
-/* SWOT HTML */
-.swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.swot-card { padding: 25px; border-radius: 12px; border: 1px solid #ccc; }
-.swot-card h3 { margin: 0 0 15px 0; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 10px; text-transform: uppercase; }
-.bg-s { background: #dcfce7; color: #14532d; }
-.bg-w { background: #fee2e2; color: #7f1d1d; }
-.bg-o { background: #dbeafe; color: #1e3a8a; }
-.bg-t { background: #ef4444; color: white; }
-.swot-footer { background: #f59e0b; color: white; padding: 20px; border-radius: 12px; margin-top: 20px; text-align: center; font-weight: bold; font-size: 1.2rem; }
-
 /* Lotus HTML */
 .lotus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; max-width: 1400px; margin: auto; padding: 20px; }
 .lotus-block { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: #475569; border: 2px solid #334155; aspect-ratio: 1/1; }
