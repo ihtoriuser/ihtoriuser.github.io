@@ -4,7 +4,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const base = process.env.TEST_URL || 'http://127.0.0.1:5173/app.html';
-const SLIDES = 19;
+const SLIDES = 20;
 
 (async () => {
   fs.mkdirSync('test-results', { recursive: true });
@@ -85,15 +85,40 @@ const SLIDES = 19;
   for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight');
   assert.ok(page.url().endsWith('#13')); assert.ok((await page.locator('.case-steps li.on').innerText()).startsWith('6.'));
   await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#14'));
-  await open(16); await page.locator('main').focus();
+  await open(17); await page.locator('main').focus();
   assert.equal(await page.locator('.who.shown').count(), 0);
   for (let i = 0; i < 3; i++) await page.keyboard.press('ArrowRight');
   assert.equal(await page.locator('.who.shown').count(), 1);
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#17'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#18'));
   // Going back lands on the fully built dilemma.
-  await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#16')); assert.equal(await page.locator('.who.shown').count(), 1);
+  await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#17')); assert.equal(await page.locator('.who.shown').count(), 1);
 
-  // 7. Reduced motion is respected.
+  // 7. AI timeline: overview → 6 years → TODAY with →, filters, sources, scenarios, year navigation.
+  await open(14); await page.locator('main').focus();
+  assert.equal(await page.locator('.ov-year').count(), 6);
+  for (let i = 0; i < 7; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#14'), `timeline step ${i}`); }
+  assert.equal(await page.locator('.tl-today-view').count(), 1); assert.equal(await page.locator('.today-cards article').count(), 3);
+  await page.locator('.year-nav .yr', { hasText: '2024' }).click();
+  assert.equal(await page.locator('.ms-list button').count(), 6);
+  await page.locator('.cat-filter button', { hasText: 'Agentlar' }).click();
+  assert.equal(await page.locator('.ms-list button').count(), 2);
+  await page.locator('.ms-list button').nth(1).click(); assert.ok((await page.locator('.ms-detail h2').innerText()).includes('MCP'));
+  assert.ok(await page.locator('.ms-detail a[href^="https://"]').count() >= 1);
+  await page.locator('.cat-filter button', { hasText: 'Hammasi' }).click();
+  await page.locator('.river .ms').first().click(); assert.ok((await page.locator('.ms-detail h2').innerText()).includes('DALL'));
+  await page.locator('.src-btn').click(); assert.ok(await page.locator('.tl-sources li').count() >= 24); await page.keyboard.press('Escape'); assert.equal(await page.locator('.tl-sources').count(), 0);
+  await page.locator('main').focus(); for (let i = 0; i < 8 && !page.url().endsWith('#15'); i++) await page.keyboard.press('ArrowRight');
+  assert.ok(page.url().endsWith('#15'));
+  assert.equal(await page.locator('.future-banner').count(), 1);
+  const s0 = await page.locator('.sc-summary').innerText();
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#15')); assert.notEqual(await page.locator('.sc-summary').innerText(), s0);
+  await page.locator('.scenario-pick button').nth(2).click(); assert.ok((await page.locator('.sc-summary').innerText()).startsWith('Tezkor'));
+  assert.equal(await page.locator('.theme-cards .tcard').count(), 6);
+  await page.locator('.year-nav .yr', { hasText: '2036' }).click(); assert.ok(page.url().endsWith('#16'));
+  assert.equal(await page.locator('.theme-cards .tcard').count(), 7); assert.equal(await page.locator('.tcard .lbl.poss').count(), 7);
+  await page.locator('.year-nav .yr', { hasText: '2022' }).click(); assert.ok(page.url().endsWith('#14')); assert.ok((await page.locator('.yv-left header b').innerText()).includes('2022'));
+
+  // 8. Reduced motion is respected.
   const reduced = await browser.newPage({ reducedMotion: 'reduce' }); await reduced.goto(base); assert.equal(await reduced.locator('.motion-paused').count(), 1); await reduced.close();
 
   fs.writeFileSync('test-results/browser-report.json', JSON.stringify({ errors, failures, layouts }, null, 2));

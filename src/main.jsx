@@ -8,4 +8,5 @@ import '@fontsource/manrope/800.css';
 import App from './app/App.jsx';
 import './styles/app.css';
 import './styles/round3.css';
+import './styles/timeline.css';
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);

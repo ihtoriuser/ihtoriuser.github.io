@@ -4,7 +4,7 @@
 
 It is a **static website**. There is no server, database, API key or paid service: everything runs in the browser on synthetic data. Live site: **https://ihtoriuser.github.io/**
 
-## Structure: 18 slides + appendix, 60 minutes
+## Structure: 19 slides + appendix, 60 minutes
 
 | # | Chapter | Slides | Min |
 |---|---|---|---|
@@ -13,9 +13,9 @@ It is a **static website**. There is no server, database, API key or paid servic
 | 7–8 | Huquqiy asoslar | Personal data and strategy (table) · AI-specific rules + takeaways | 2+3 |
 | 9–11 | Chatbot va agent | Comparing 5 architectures · agent anatomy · **live demo** (8 × →) | 2+2+6 |
 | 12–13 | Amaliy qo‘llanish | 7 use cases + rules · case study (5 × →) | 6+7 |
-| 14–15 | Kelajak | Timeline 2021 → today (facts with sources) · today / +5 / +10 years (forecast) | 3+3 |
-| 16–17 | Etika | Dilemma (3 × →) · principles and the central idea | 4+3 |
-| 18 | Xulosa | Three takeaways, question, “Rahmat!” | 2 |
+| 14–16 | Kelajak | AI history 2021 → TODAY: 24 verified milestones, filters, sources (7 × →) · 2031 scenarios (2 × →) · 2036 scenarios (2 × →) | 2+2+2 |
+| 17–18 | Etika | Dilemma (3 × →) · principles and the central idea | 4+3 |
+| 19 | Xulosa | Three takeaways, question, “Rahmat!” | 2 |
 | + | Ilova | Sources and limitations | — |
 
 **How presenting works:** you press **→** (or a clicker), and that is all. Slides with steps (the agent demo, the case study, the dilemma) use the first presses to play their next step, then move on to the next slide. All other animations run by themselves. You can still click, but you never have to.
@@ -103,4 +103,4 @@ src/styles/app.css      design: one accent colour per chapter
 
 To change a slide's text, edit `src/i18n/*.js` (the same key in all three files). To change a slide's planned time, edit `minutes` in `data.js`; the minutes must add up to 60 (a test checks this).
 
-Sources and how they were verified are in `docs/`.
+Sources and how they were verified are in `docs/`. The AI timeline data is in `src/content/aiTimeline.js`, its text in `src/i18n/timeline/*.js`, and its audit in `docs/timeline-audit.md`.

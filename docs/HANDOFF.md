@@ -1,5 +1,26 @@
 # Technical handoff (2026-10-11)
 
+## Round 4: AI timeline 2021 → 2036
+- The old `Future.jsx` (two slides) is replaced by three slides:
+  - `AiHistory.jsx` (`timeline`): overview → 2021 … 2026 → TODAY, 7 build steps;
+  - `FutureScenarios.jsx` (`future2031`, `future2036`): baseline → cautious → accelerated, 2 build steps each.
+- Chapter 6 still totals 6 minutes.
+- Data lives in `src/content/aiTimeline.js`:
+  - milestones with date, organisation, category, status and sources;
+  - evidence;
+  - scenarios;
+  - illustration parameters;
+  - forecast themes with evidence level.
+- Text lives in `src/i18n/timeline/{uz,ru,en}.js` and is merged into `t.tl` by `getT()`.
+- **Interactions:**
+  - the year navigator 2021 → 2036 is shared across all three slides;
+  - category filters; clickable and keyboard-focusable milestones on the "river";
+  - a detail panel (what happened / what changed / why it matters / public service);
+  - a sources panel (Esc closes it);
+  - scenario selector; cycling theme cards with assumption and obstacle; overview reset.
+- **Tests:** `engine.test.mjs` checks that milestones are chronological, before the reference date and sourced, and that the text is complete in all three languages. The browser test exercises the timeline's steps, filters, sources, scenarios and year navigation.
+- The factual audit is in `docs/timeline-audit.md`.
+
 ## Round 3 (author feedback)
 - **Navigation:** a “Boshiga / В начало / To start” button (and `Home`) jumps to slide 1. The start, back and next buttons now sit together on the right of the footer.
 - **Avatar:** `Content/ava.jpg` was cropped to a face square and saved as `public/ava.jpg`. It appears in the intro presenter card and on the final “Rahmat!” card.

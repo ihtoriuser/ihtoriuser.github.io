@@ -1,6 +1,11 @@
 import uz from './uz.js';
 import ru from './ru.js';
 import en from './en.js';
+import tlUz from './timeline/uz.js';
+import tlRu from './timeline/ru.js';
+import tlEn from './timeline/en.js';
+
+const TL = { uz: tlUz, ru: tlRu, en: tlEn };
 
 export const LANGS = [uz, ru, en];
 const byCode = { uz, ru, en };
@@ -15,7 +20,13 @@ function merge(base, over) {
 const cache = {};
 export function getT(code) {
   if (!byCode[code]) code = 'uz';
-  return cache[code] ??= code === 'uz' ? uz : merge(uz, byCode[code]);
+  if (cache[code]) return cache[code];
+  const t = code === 'uz' ? { ...uz } : merge(uz, byCode[code]);
+  // Timeline texts live in their own files; slides/notes are registered alongside the rest.
+  t.tl = merge(tlUz, TL[code]);
+  t.slides = { ...t.slides, ...t.tl.slides };
+  t.notes = { ...t.notes, ...t.tl.notes };
+  return (cache[code] = t);
 }
 export function initialLang() {
   try {

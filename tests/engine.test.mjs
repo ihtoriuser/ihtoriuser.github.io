@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { agentReducer, initialAgent, nextAction, presenterAction, probabilities, trainStep, neuron, attention, fmtClock, plannedStart } from '../src/simulations/engine.js';
-import { SLIDES, LAWS, EVENTS, THEMES, USE_CASES } from '../src/content/data.js';
+import { SLIDES, LAWS, USE_CASES } from '../src/content/data.js';
+import { MILESTONES, FUTURE_THEMES, SCENARIOS, EVIDENCE, REFERENCE_DATE, HISTORY_YEARS, CATEGORIES } from '../src/content/aiTimeline.js';
+import { getT } from '../src/i18n/index.js';
 import uz from '../src/i18n/uz.js';
 import ru from '../src/i18n/ru.js';
 import en from '../src/i18n/en.js';
@@ -68,13 +70,45 @@ test('timing: 60 planned minutes, clock formatting', () => {
 });
 
 // Every id used by the slides must have text in every language.
-test('all three languages cover every slide, law, event, theme and use case', () => {
-  for (const [name, t] of Object.entries({ uz, ru, en })) {
-    assert.equal(t.chapters.length, 8, name);
-    for (const s of SLIDES) { assert.ok(t.slides[s.id]?.title, `${name}: slide ${s.id}`); assert.ok(t.notes[s.id], `${name}: notes ${s.id}`); }
-    for (const l of LAWS) assert.ok(t.laws[l.id]?.says, `${name}: law ${l.id}`);
-    for (const e of EVENTS) assert.ok(t.events[e.id]?.title, `${name}: event ${e.id}`);
-    for (const th of THEMES) assert.ok(t.themes[th.id]?.forecast, `${name}: theme ${th.id}`);
-    for (const u of USE_CASES) assert.ok(t.useCases[u.id]?.ai, `${name}: use case ${u.id}`);
+test('all three languages cover every slide, law and use case', () => {
+  for (const code of ['uz', 'ru', 'en']) {
+    const t = getT(code);
+    assert.equal(t.chapters.length, 8, code);
+    for (const s of SLIDES) { assert.ok(t.slides[s.id]?.title, `${code}: slide ${s.id}`); assert.ok(t.notes[s.id], `${code}: notes ${s.id}`); }
+    for (const l of LAWS) assert.ok(t.laws[l.id]?.says, `${code}: law ${l.id}`);
+    for (const u of USE_CASES) assert.ok(t.useCases[u.id]?.ai, `${code}: use case ${u.id}`);
+  }
+});
+
+test('timeline: verified history only, chronological, sourced, before the reference date', () => {
+  assert.ok(MILESTONES.length >= 18 && MILESTONES.length <= 25, `${MILESTONES.length} milestones`);
+  const cats = new Set(CATEGORIES.map(c => c.id));
+  for (let i = 0; i < MILESTONES.length; i++) {
+    const m = MILESTONES[i];
+    assert.match(m.date, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(m.date <= REFERENCE_DATE, `${m.id} is in the future`);
+    if (i) assert.ok(m.date >= MILESTONES[i - 1].date, `${m.id} out of order`);
+    assert.ok(HISTORY_YEARS.includes(m.date.slice(0, 4)));
+    assert.ok(cats.has(m.cat), m.id);
+    assert.ok(m.urls.length && m.urls.every(u => /^https:\/\//.test(u)), `${m.id} source`);
+    assert.ok(m.status, m.id);
+  }
+});
+
+test('timeline + scenarios have complete text in all languages', () => {
+  for (const code of ['uz', 'ru', 'en']) {
+    const T = getT(code).tl;
+    for (const m of MILESTONES) for (const f of ['title', 'what', 'tech', 'why']) assert.ok(T.milestones[m.id]?.[f], `${code}: ${m.id}.${f}`);
+    for (const m of MILESTONES) assert.ok(T.ui.status[m.status], `${code}: status ${m.status}`);
+    for (const y of HISTORY_YEARS) for (const f of ['title', 'story', 'gov']) assert.ok(T.years[y]?.[f], `${code}: year ${y}.${f}`);
+    for (const e of EVIDENCE) assert.ok(T.evidence[e.id], `${code}: evidence ${e.id}`);
+    for (const [year, themes] of Object.entries(FUTURE_THEMES)) {
+      const F = T.future[year];
+      for (const s of SCENARIOS) {
+        assert.ok(F.summary[s.id] && F.benefits[s.id]?.length && F.risks[s.id]?.length, `${code}: ${year} ${s.id}`);
+        assert.ok(T.scenarios[s.id]?.name, `${code}: scenario ${s.id}`);
+      }
+      for (const th of themes) for (const f of ['title', 'assumption', 'obstacle', ...SCENARIOS.map(s => s.id)]) assert.ok(F.themes[th.id]?.[f], `${code}: ${year}.${th.id}.${f}`);
+    }
   }
 });
