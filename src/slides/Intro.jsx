@@ -7,6 +7,7 @@ export default function Intro({ t }) {
   const s = t.slides.intro;
   return <div className="slide intro-slide">
     <div className="intro-copy">
+      <div className="topic"><small>{t.ui.topicLabel}</small><b>{t.ui.course}</b>{t.ui.courseTr && <span>{t.ui.courseTr}</span>}</div>
       <div className="eyebrow"><span />{s.eyebrow}</div>
       <h1 className="hero-title">{s.title.map((l, i) => <span key={i} className={`l${i}`}>{l}</span>)}</h1>
       <p className="lead">{s.lead}</p>

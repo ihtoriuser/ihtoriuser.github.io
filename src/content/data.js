@@ -4,21 +4,27 @@
 // extra "→" presses the slide consumes before moving on (0 = none).
 export const SLIDES = [
   { id: 'intro', chapter: 0, minutes: 5, builds: 0 },
+  // 1 · How AI works, ending with how we got from chatbots to agents
   { id: 'aiMap', chapter: 1, minutes: 2, builds: 0 },
   { id: 'network', chapter: 1, minutes: 3, builds: 0 },
   { id: 'learning', chapter: 1, minutes: 3, builds: 0 },
   { id: 'tokens', chapter: 1, minutes: 2, builds: 0 },
   { id: 'attention', chapter: 1, minutes: 2, builds: 0 },
-  { id: 'law', chapter: 2, minutes: 2, builds: 0 },
-  { id: 'lawAi', chapter: 2, minutes: 3, builds: 0 },
-  { id: 'agents', chapter: 3, minutes: 2, builds: 0 },
-  { id: 'anatomy', chapter: 3, minutes: 2, builds: 0 },
-  { id: 'agentLab', chapter: 3, minutes: 6, builds: 8 },
-  { id: 'useCases', chapter: 4, minutes: 6, builds: 0 },
-  { id: 'caseStudy', chapter: 4, minutes: 7, builds: 5 },
-  { id: 'timeline', chapter: 5, minutes: 2, builds: 7 },
+  { id: 'timeline', chapter: 1, minutes: 2, builds: 7 },
+  // 2 · Chatbot vs agent (the core topic)
+  { id: 'agents', chapter: 2, minutes: 2, builds: 0 },
+  { id: 'anatomy', chapter: 2, minutes: 2, builds: 0 },
+  { id: 'agentLab', chapter: 2, minutes: 6, builds: 8 },
+  // 3 · Where it applies in government
+  { id: 'useCases', chapter: 3, minutes: 6, builds: 0 },
+  { id: 'caseStudy', chapter: 3, minutes: 7, builds: 5 },
+  // 4 · What the law allows
+  { id: 'law', chapter: 4, minutes: 2, builds: 0 },
+  { id: 'lawAi', chapter: 4, minutes: 3, builds: 0 },
+  // 5 · Where it is heading
   { id: 'future2031', chapter: 5, minutes: 2, builds: 2 },
   { id: 'future2036', chapter: 5, minutes: 2, builds: 2 },
+  // 6 · Our responsibility · 7 · Conclusion
   { id: 'dilemma', chapter: 6, minutes: 4, builds: 3 },
   { id: 'principles', chapter: 6, minutes: 3, builds: 0 },
   { id: 'conclusion', chapter: 7, minutes: 2, builds: 0 },

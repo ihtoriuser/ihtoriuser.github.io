@@ -1,14 +1,14 @@
 // AI evolution 2021 → 2036 — English text.
 export default {
   slides: {
-    timeline: { eyebrow: 'Looking ahead · 1/3 · historical facts', title: 'How AI evolved: 2021 → today', lead: 'Every dot is an event with a verified date and source. The → key walks through the years.' },
-    future2031: { eyebrow: 'Looking ahead · 2/3 · forecast', title: '2031: AI agents may become part of everyday workflows', lead: 'Three alternative scenarios. The → key switches between them.' },
-    future2036: { eyebrow: 'Looking ahead · 3/3 · possibilities', title: '2036: how might AI change public administration?', lead: 'Ten years means great uncertainty. Shown here are possibilities and the conditions they depend on.' },
+    timeline: { eyebrow: 'How AI works · evolution · historical facts', title: 'How AI evolved: 2021 → today', lead: 'Every dot is an event with a verified date and source. The → key walks through the years.' },
+    future2031: { eyebrow: 'Looking ahead · 1/2 · forecast', title: '2031: AI agents may become part of everyday workflows', lead: 'Three alternative scenarios. The → key switches between them.' },
+    future2036: { eyebrow: 'Looking ahead · 2/2 · possibilities', title: '2036: how might AI change public administration?', lead: 'Ten years means great uncertainty. Shown here are possibilities and the conditions they depend on.' },
   },
   notes: {
-    timeline: '45–47 min. Start with the overview (one sentence tells the whole story), then → through 2021 → 2026. In each year open one card and read “what changed”. Stop at the “TODAY” marker in 2026: beyond it, nothing is fact.',
-    future2031: '47–49 min. Baseline first; → cautious; → accelerated. Stress that these are alternatives, with no probabilities. Bottom left shows observed trends (AI Index, METR); METR hours do not mean “an agent works that long on its own”.',
-    future2036: '49–51 min. Always read the AGI card: neither definition nor timeline is agreed. Close with: capability and responsibility both grow.',
+    timeline: 'Start with the overview (one sentence tells the whole story), then → through 2021 → 2026. In each year open one card and read “what changed”. Stop at the “TODAY” marker in 2026: beyond it, nothing is fact.',
+    future2031: 'Baseline first; → cautious; → accelerated. Stress that these are alternatives, with no probabilities. Bottom left shows observed trends (AI Index, METR); METR hours do not mean “an agent works that long on its own”.',
+    future2036: 'Always read the AGI card: neither definition nor timeline is agreed. Close with: capability and responsibility both grow.',
   },
   ui: {
     overview: 'Overview', all: 'All', filter: 'Area', sources: 'Sources', close: 'Close', reset: 'Reset',

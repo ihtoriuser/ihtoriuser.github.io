@@ -1,14 +1,14 @@
 // AI evolyutsiyasi 2021 → 2036 — o‘zbekcha matn.
 export default {
   slides: {
-    timeline: { eyebrow: 'Kelajakka qarash · 1/3 · tarixiy faktlar', title: 'AI qanday rivojlandi: 2021 → bugun', lead: 'Har bir nuqta — sanasi va manbasi tekshirilgan voqea. → tugmasi yillar bo‘ylab yuradi.' },
-    future2031: { eyebrow: 'Kelajakka qarash · 2/3 · prognoz', title: '2031: AI agentlar kundalik ish jarayonlarining bir qismiga aylanishi mumkin', lead: 'Uchta muqobil ssenariy. → tugmasi ssenariylarni almashtiradi.' },
-    future2036: { eyebrow: 'Kelajakka qarash · 3/3 · taxminiy imkoniyatlar', title: '2036: Sun’iy intellekt davlat boshqaruvini qanday o‘zgartirishi mumkin?', lead: 'O‘n yil — juda katta noaniqlik. Bu yerda faqat imkoniyatlar va ularning shartlari ko‘rsatilgan.' },
+    timeline: { eyebrow: 'AI qanday ishlaydi · evolyutsiya · tarixiy faktlar', title: 'AI qanday rivojlandi: 2021 → bugun', lead: 'Har bir nuqta — sanasi va manbasi tekshirilgan voqea. → tugmasi yillar bo‘ylab yuradi.' },
+    future2031: { eyebrow: 'Kelajakka qarash · 1/2 · prognoz', title: '2031: AI agentlar kundalik ish jarayonlarining bir qismiga aylanishi mumkin', lead: 'Uchta muqobil ssenariy. → tugmasi ssenariylarni almashtiradi.' },
+    future2036: { eyebrow: 'Kelajakka qarash · 2/2 · taxminiy imkoniyatlar', title: '2036: Sun’iy intellekt davlat boshqaruvini qanday o‘zgartirishi mumkin?', lead: 'O‘n yil — juda katta noaniqlik. Bu yerda faqat imkoniyatlar va ularning shartlari ko‘rsatilgan.' },
   },
   notes: {
-    timeline: '45–47 daq. Umumiy ko‘rinishdan boshlang (bitta jumla — butun hikoya), keyin → bilan 2021 → 2026. Har yilda bitta kartani bosib, “nima o‘zgardi” qatorini o‘qing. 2026 da “BUGUN” belgisiga to‘xtang: bundan keyin — fakt emas.',
-    future2031: '47–49 daq. Avval asosiy ssenariy. → — ehtiyotkor, → — tezkor. Ta’kidlang: bu muqobil kelajaklar, ehtimol foizi yo‘q. Chap pastda kuzatilgan trendlar (AI Index, METR) — METR soatlari “agent shuncha soat mustaqil ishlaydi” degani emas.',
-    future2036: '49–51 daq. AGI kartasini albatta o‘qing: ta’rif va muddat kelishilmagan. Yakuniy jumla: imkoniyat ham, mas’uliyat ham ortadi.',
+    timeline: 'Umumiy ko‘rinishdan boshlang (bitta jumla — butun hikoya), keyin → bilan 2021 → 2026. Har yilda bitta kartani bosib, “nima o‘zgardi” qatorini o‘qing. 2026 da “BUGUN” belgisiga to‘xtang: bundan keyin — fakt emas.',
+    future2031: 'Avval asosiy ssenariy. → — ehtiyotkor, → — tezkor. Ta’kidlang: bu muqobil kelajaklar, ehtimol foizi yo‘q. Chap pastda kuzatilgan trendlar (AI Index, METR) — METR soatlari “agent shuncha soat mustaqil ishlaydi” degani emas.',
+    future2036: 'AGI kartasini albatta o‘qing: ta’rif va muddat kelishilmagan. Yakuniy jumla: imkoniyat ham, mas’uliyat ham ortadi.',
   },
   ui: {
     overview: 'Umumiy ko‘rinish', all: 'Hammasi', filter: 'Yo‘nalish', sources: 'Manbalar', close: 'Yopish', reset: 'Qayta boshlash',

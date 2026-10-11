@@ -28,9 +28,9 @@ const SLIDES = 20;
 
   await page.setViewportSize({ width: 1920, height: 1080 });
   // 2. No PDF anywhere; the legal slide is a table with 5 laws and Lex.uz links.
-  await open(7);
+  await open(13);
   assert.equal(await page.locator('.law-table tbody tr').count(), 3);
-  await open(8);
+  await open(14);
   assert.equal(await page.locator('.law-table tbody tr').count(), 2);
   assert.equal(await page.locator('.law-takeaways > div').count(), 3);
   assert.equal(await page.locator('object, a[href$=".pdf"]').count(), 0);
@@ -39,7 +39,7 @@ const SLIDES = 20;
   await open(1); await page.locator('main').focus();
   await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#2'));
   await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#1'));
-  await page.keyboard.press('Digit4'); assert.ok(page.url().endsWith('#9'));
+  await page.keyboard.press('Digit4'); assert.ok(page.url().endsWith('#11'));
   await page.getByRole('button', { name: 'Boshiga' }).click(); assert.ok(page.url().endsWith('#1'));
   await page.keyboard.press('Digit4'); await page.keyboard.press('Home'); assert.ok(page.url().endsWith('#1'));
   await open(3); assert.equal(await page.locator('.in-node').count(), 3); assert.equal(await page.locator('.out-node').count(), 3);
@@ -63,14 +63,14 @@ const SLIDES = 20;
   await page.keyboard.press('KeyT');
 
   // 5. Agent lab: → drives the agent; it picks find_responsible itself; → at the gate approves; then the next slide.
-  await open(11); await page.locator('main').focus();
-  for (let i = 0; i < 8; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#11'), `press ${i}`); }
+  await open(10); await page.locator('main').focus();
+  for (let i = 0; i < 8; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#10'), `press ${i}`); }
   assert.equal(await page.locator('.call code', { hasText: 'find_responsible' }).count(), 1);
   assert.equal(await page.locator('.call code', { hasText: 'send_notice' }).count(), 3);
   assert.equal(await page.locator('.stats').count(), 1);
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#12'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#11'));
   // Mouse path: deny permission, then reject at the gate.
-  await open(11);
+  await open(10);
   await page.getByRole('button', { name: 'Keyingi qadam' }).click(); await page.getByRole('button', { name: 'Keyingi qadam' }).click();
   await page.locator('.stage input[type=checkbox]').uncheck(); await page.getByRole('button', { name: 'Keyingi qadam' }).click();
   assert.equal(await page.locator('.call.denied').count(), 1); assert.equal(await page.getByRole('alert').count(), 1);
@@ -81,10 +81,10 @@ const SLIDES = 20;
   assert.equal(await page.locator('.call code', { hasText: 'send_notice' }).count(), 0);
 
   // 6. Build steps: case study (5) and dilemma (3) consume → before moving on.
-  await open(13); await page.locator('main').focus();
+  await open(12); await page.locator('main').focus();
   for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight');
-  assert.ok(page.url().endsWith('#13')); assert.ok((await page.locator('.case-steps li.on').innerText()).startsWith('6.'));
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#14'));
+  assert.ok(page.url().endsWith('#12')); assert.ok((await page.locator('.case-steps li.on').innerText()).startsWith('6.'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#13'));
   await open(17); await page.locator('main').focus();
   assert.equal(await page.locator('.who.shown').count(), 0);
   for (let i = 0; i < 3; i++) await page.keyboard.press('ArrowRight');
@@ -94,9 +94,9 @@ const SLIDES = 20;
   await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#17')); assert.equal(await page.locator('.who.shown').count(), 1);
 
   // 7. AI timeline: overview → 6 years → TODAY with →, filters, sources, scenarios, year navigation.
-  await open(14); await page.locator('main').focus();
+  await open(7); await page.locator('main').focus();
   assert.equal(await page.locator('.ov-year').count(), 6);
-  for (let i = 0; i < 7; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#14'), `timeline step ${i}`); }
+  for (let i = 0; i < 7; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#7'), `timeline step ${i}`); }
   assert.equal(await page.locator('.tl-today-view').count(), 1); assert.equal(await page.locator('.today-cards article').count(), 3);
   await page.locator('.year-nav .yr', { hasText: '2024' }).click();
   assert.equal(await page.locator('.ms-list button').count(), 6);
@@ -107,8 +107,8 @@ const SLIDES = 20;
   await page.locator('.cat-filter button', { hasText: 'Hammasi' }).click();
   await page.locator('.river .ms').first().click(); assert.ok((await page.locator('.ms-detail h2').innerText()).includes('DALL'));
   await page.locator('.src-btn').click(); assert.ok(await page.locator('.tl-sources li').count() >= 24); await page.keyboard.press('Escape'); assert.equal(await page.locator('.tl-sources').count(), 0);
-  await page.locator('main').focus(); for (let i = 0; i < 8 && !page.url().endsWith('#15'); i++) await page.keyboard.press('ArrowRight');
-  assert.ok(page.url().endsWith('#15'));
+  await page.locator('main').focus(); for (let i = 0; i < 8 && !page.url().endsWith('#8'); i++) await page.keyboard.press('ArrowRight');
+  assert.ok(page.url().endsWith('#8')); await open(15); await page.locator('main').focus();
   assert.equal(await page.locator('.future-banner').count(), 1);
   const s0 = await page.locator('.sc-summary').innerText();
   await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#15')); assert.notEqual(await page.locator('.sc-summary').innerText(), s0);
@@ -116,7 +116,7 @@ const SLIDES = 20;
   assert.equal(await page.locator('.theme-cards .tcard').count(), 6);
   await page.locator('.year-nav .yr', { hasText: '2036' }).click(); assert.ok(page.url().endsWith('#16'));
   assert.equal(await page.locator('.theme-cards .tcard').count(), 7); assert.equal(await page.locator('.tcard .lbl.poss').count(), 7);
-  await page.locator('.year-nav .yr', { hasText: '2022' }).click(); assert.ok(page.url().endsWith('#14')); assert.ok((await page.locator('.yv-left header b').innerText()).includes('2022'));
+  await page.locator('.year-nav .yr', { hasText: '2022' }).click(); assert.ok(page.url().endsWith('#7')); assert.ok((await page.locator('.yv-left header b').innerText()).includes('2022'));
 
   // 8. Reduced motion is respected.
   const reduced = await browser.newPage({ reducedMotion: 'reduce' }); await reduced.goto(base); assert.equal(await reduced.locator('.motion-paused').count(), 1); await reduced.close();

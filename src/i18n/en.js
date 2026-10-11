@@ -2,7 +2,7 @@
 export default {
   code: 'en', htmlLang: 'en', label: 'EN', name: 'English',
   ui: {
-    brand: 'AI lab', course: 'AI agents in government services',
+    topicLabel: 'Topic', brand: 'AI lab', course: 'Davlat xizmatlarida AI Agentlar (AI Agents) va ularning oddiy Chatbotlardan farqi', courseTr: 'AI agents in government services and how they differ from ordinary chatbots',
     slide: 'Slide', min: 'min', start: 'To start', next: 'Next', prev: 'Back', finish: 'End',
     timerStart: 'Start timer', timerPause: 'Pause', timerReset: 'Reset timers',
     slideTime: 'Slide', total: 'Total', ahead: 'ahead of plan', behind: 'behind plan', onPlan: 'on plan',
@@ -16,7 +16,7 @@ export default {
     shortcuts: [['→ / Space / PageDown', 'next step or slide'], ['← / PageUp', 'back'], ['Home', 'to the start (slide 1)'], ['1–8', 'jump to chapter'], ['B', 'chapter panel'], ['F', 'full screen'], ['T', 'timer'], ['N', 'notes'], ['L', 'language'], ['R', 'restart slide'], ['M', 'animation']],
     noWebgl: 'WebGL unavailable — SVG view.',
   },
-  chapters: ['Introduction', 'How does AI work?', 'Legal framework', 'Chatbot vs agent', 'In practice', 'Looking ahead', 'Ethics & responsibility', 'Conclusion'],
+  chapters: ['Introduction', 'How does AI work?', 'Chatbot vs agent', 'In practice', 'Legal framework', 'Looking ahead', 'Ethics & responsibility', 'Conclusion'],
 
   slides: {
     intro: {
@@ -248,23 +248,23 @@ export default {
   },
 
   notes: {
-    intro: '0–5 min. Introduce yourself: development experience at the Central Bank (don’t claim deployment). Ask the room — show of hands. Remember the answer: you’ll come back to it at the end.',
-    aiMap: '5–7 min. The circles light up by themselves. LLMs are a family inside DL, not a separate “level”.',
-    learning: '10–13 min. Left: training starts on its own — the loss falls. Right: three temperatures side by side. Key point: the model doesn’t learn during a chat.',
-    meaning: '13–17 min. Tokens → embeddings (application ≈ appeal) → attention (“it” → “the form”). Then hallucination and the 4 checks.',
-    law: '17–19 min. Three documents: the data law (547), storage location (1125), the AI-2030 strategy (PP-358). The strategy sets direction; obligations are in other laws.',
-    lawAi: '19–22 min. ZRU-1115 is key: an AI conclusion is not the sole basis. The ethics rules (3787) are binding, not just advice. Read the three takeaways below.',
-    agents: '22–24 min. Read the table left to right: “who decides the path?” is the key difference.',
-    agentLab: '26–32 min. The chatbot answer is already on screen — read it. Then press →: each press is one agent step. At stage 4 the agent picks find_responsible itself — pause and explain. At approval you may untick one item; → approves.',
-    useCases: '32–38 min. Find the row for the task the room chose; read the AI and human roles. Name the four rules on the right: many tasks don’t need an agent.',
-    caseStudy: '38–45 min. 6 stages with →: the active tool lights up. Finish with a short word on Jira AI Agent — as development experience.',
-    dilemma: '51–55 min. Read the case and let the room vote. → consequences, → one week later, → who is accountable.',
-    principles: '55–58 min. Central idea: technology outpaces consensus; officers fill the gap. Pick 2–3 principles.',
-    conclusion: '58–60 min. Three takeaways. Return to the opening question. Show the site address — the material stays available.',
-    network: '7–10 min. Examples change by themselves: left is the input (text features), right the output (category %). On example 4 (park + lights) confidence is low — pause: when AI is unsure, the case goes to an officer.',
-    tokens: '13–15 min. Show the tokens appearing; on the map, point out “application” next to “appeal”.',
-    attention: '15–17 min. “it” → “the form”. Then hallucination and the 4 checks.',
-    anatomy: '24–26 min. Concepts cycle by themselves. Stress that the program, not the model, runs the tool.',
+    intro: 'Introduce yourself: development experience at the Central Bank (don’t claim deployment). Ask the room — show of hands. Remember the answer: you’ll come back to it at the end.',
+    aiMap: 'The circles light up by themselves. LLMs are a family inside DL, not a separate “level”.',
+    learning: 'Left: training starts on its own — the loss falls. Right: three temperatures side by side. Key point: the model doesn’t learn during a chat.',
+    meaning: 'Tokens → embeddings (application ≈ appeal) → attention (“it” → “the form”). Then hallucination and the 4 checks.',
+    law: 'Three documents: the data law (547), storage location (1125), the AI-2030 strategy (PP-358). The strategy sets direction; obligations are in other laws.',
+    lawAi: 'ZRU-1115 is key: an AI conclusion is not the sole basis. The ethics rules (3787) are binding, not just advice. Read the three takeaways below.',
+    agents: 'Read the table left to right: “who decides the path?” is the key difference.',
+    agentLab: 'The chatbot answer is already on screen — read it. Then press →: each press is one agent step. At stage 4 the agent picks find_responsible itself — pause and explain. At approval you may untick one item; → approves.',
+    useCases: 'Find the row for the task the room chose; read the AI and human roles. Name the four rules on the right: many tasks don’t need an agent.',
+    caseStudy: '6 stages with →: the active tool lights up. Finish with a short word on Jira AI Agent — as development experience.',
+    dilemma: 'Read the case and let the room vote. → consequences, → one week later, → who is accountable.',
+    principles: 'Central idea: technology outpaces consensus; officers fill the gap. Pick 2–3 principles.',
+    conclusion: 'Three takeaways. Return to the opening question. Show the site address — the material stays available.',
+    network: 'Examples change by themselves: left is the input (text features), right the output (category %). On example 4 (park + lights) confidence is low — pause: when AI is unsure, the case goes to an officer.',
+    tokens: 'Show the tokens appearing; on the map, point out “application” next to “appeal”.',
+    attention: '“it” → “the form”. Then hallucination and the 4 checks.',
+    anatomy: 'Concepts cycle by themselves. Stress that the program, not the model, runs the tool.',
     sources: 'For Q&A: open the sources.',
   },
 

@@ -1,4 +1,4 @@
-# AI agents in government services: interactive lesson
+# Davlat xizmatlarida AI Agentlar (AI Agents) va ularning oddiy Chatbotlardan farqi
 
 **Davlat xizmatlarida AI agentlar va ularning oddiy chatbotlardan farqi.** This is a 60-minute interactive presentation for government employees (Ustudy IT Academy, 12.10.2026). It is available in three languages: **O‘zbekcha · Русский · English**.
 
@@ -6,14 +6,16 @@ It is a **static website**. There is no server, database, API key or paid servic
 
 ## Structure: 19 slides + appendix, 60 minutes
 
+The order follows the logic of the lesson: what AI is → how it went from chatbots to agents → how an agent differs from a chatbot → where agents apply in public service → what the law allows → where things are heading → what responsibility that puts on us.
+
 | # | Chapter | Slides | Min |
 |---|---|---|---|
-| 1 | Kirish | Introduction, lecturer (photo), question for the room | 5 |
-| 2–6 | AI qanday ishlaydi? | AI ⊃ ML ⊃ DL ⊃ LLM · labelled network (request text → category %) · training vs inference · tokens and embeddings · attention and hallucinations | 2+3+3+2+2 |
-| 7–8 | Huquqiy asoslar | Personal data and strategy (table) · AI-specific rules + takeaways | 2+3 |
-| 9–11 | Chatbot va agent | Comparing 5 architectures · agent anatomy · **live demo** (8 × →) | 2+2+6 |
-| 12–13 | Amaliy qo‘llanish | 7 use cases + rules · case study (5 × →) | 6+7 |
-| 14–16 | Kelajak | AI history 2021 → TODAY: 24 verified milestones, filters, sources (7 × →) · 2031 scenarios (2 × →) · 2036 scenarios (2 × →) | 2+2+2 |
+| 1 | Kirish | Exact topic, lecturer, question for the room | 5 |
+| 2–7 | AI qanday ishlaydi? | AI ⊃ ML ⊃ DL ⊃ LLM · neural network (input → output) · training vs inference · tokens and embeddings · attention and hallucinations · AI history 2021 → TODAY (7 × →) | 2+3+3+2+2+2 |
+| 8–10 | Chatbot va agent | 5 architectures · agent anatomy · **live demo** (8 × →) | 2+2+6 |
+| 11–12 | Amaliy qo‘llanish | 7 tasks + rules · case study (5 × →) | 6+7 |
+| 13–14 | Huquqiy asoslar | Personal data and strategy · AI-specific rules + takeaways | 2+3 |
+| 15–16 | Kelajakka qarash | 2031 and 2036: three scenarios each (2 × →) | 2+2 |
 | 17–18 | Etika | Dilemma (3 × →) · principles and the central idea | 4+3 |
 | 19 | Xulosa | Three takeaways, question, “Rahmat!” | 2 |
 | + | Ilova | Sources and limitations | — |

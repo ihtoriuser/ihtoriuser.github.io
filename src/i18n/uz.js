@@ -2,7 +2,7 @@
 export default {
   code: 'uz', htmlLang: 'uz', label: 'UZ', name: 'O‘zbekcha',
   ui: {
-    brand: 'AI laboratoriya', course: 'Davlat xizmatlarida AI agentlar',
+    topicLabel: 'Mavzu', brand: 'AI laboratoriya', course: 'Davlat xizmatlarida AI Agentlar (AI Agents) va ularning oddiy Chatbotlardan farqi',
     slide: 'Slayd', min: 'daq', start: 'Boshiga', next: 'Keyingi', prev: 'Oldingi', finish: 'Yakun',
     timerStart: 'Taymerni boshlash', timerPause: 'Pauza', timerReset: 'Taymerlarni tiklash',
     slideTime: 'Slayd', total: 'Jami', ahead: 'rejadan oldinda', behind: 'rejadan orqada', onPlan: 'rejada',
@@ -16,7 +16,7 @@ export default {
     shortcuts: [['→ / Space / PageDown', 'keyingi qadam yoki slayd'], ['← / PageUp', 'orqaga'], ['Home', 'boshiga (1-slayd)'], ['1–8', 'bobga o‘tish'], ['B', 'boblar paneli'], ['F', 'to‘liq ekran'], ['T', 'taymer'], ['N', 'qaydlar'], ['L', 'til'], ['R', 'slaydni qayta boshlash'], ['M', 'animatsiya']],
     noWebgl: 'WebGL mavjud emas — SVG ko‘rinishi.',
   },
-  chapters: ['Kirish', 'AI qanday ishlaydi?', 'Huquqiy asoslar', 'Chatbot va agent', 'Amaliy qo‘llanish', 'Kelajakka qarash', 'Etika va mas’uliyat', 'Xulosa'],
+  chapters: ['Kirish', 'AI qanday ishlaydi?', 'Chatbot va agent', 'Amaliy qo‘llanish', 'Huquqiy asoslar', 'Kelajakka qarash', 'Etika va mas’uliyat', 'Xulosa'],
 
   slides: {
     intro: {
@@ -248,23 +248,23 @@ export default {
   },
 
   notes: {
-    intro: '0–5 daq. O‘zingizni tanishtiring: Markaziy bankdagi ishlab chiqish tajribasi (joriy etilgan deb da’vo qilmang). Zalga savol bering — qo‘l ko‘tarish bilan. Javobni eslab qoling: oxirida qaytasiz.',
-    aiMap: '5–7 daq. Doiralar avtomatik yonadi. LLM — DL ichidagi oila, alohida “pog‘ona” emas.',
-    learning: '10–13 daq. Chap: o‘qitish o‘zi boshlanadi — loss pasayadi. O‘ng: uch temperature yonma-yon. Asosiy fikr: suhbatda model o‘rganmaydi.',
-    meaning: '13–17 daq. Tokenlar → embedding (ariza ≈ murojaat) → attention (“u” → “arizani”). So‘ng gallyutsinatsiya va 4 ta tekshiruv qadami.',
-    law: '17–19 daq. Uch hujjat: ma’lumot qonuni (547), saqlash joyi (1125), AI–2030 strategiyasi (PQ-358). Strategiya — yo‘nalish, majburiyatlar boshqa qonunlarda.',
-    lawAi: '19–22 daq. O‘RQ-1115 — asosiy: AI xulosasi yagona asos emas. Etika qoidalari (3787) majburiy, oddiy tavsiya emas. Pastdagi uch xulosani o‘qing.',
-    agents: '22–24 daq. Jadvalni chapdan o‘ngga o‘qing: “yo‘lni kim belgilaydi?” — asosiy farq.',
-    agentLab: '26–32 daq. Chatbot javobi tayyor turadi — o‘qing. Keyin → ni bosing: har bosish agentning bitta qadami. 4-bosqichda agent find_responsible ni o‘zi tanlaydi — shu yerda to‘xtab tushuntiring. Tasdiqda bitta belgini olib tashlab ko‘rsatish mumkin; → tasdiqlaydi.',
-    useCases: '32–38 daq. Auditoriya tanlagan vazifa qatorini topib, AI va inson rollarini o‘qing. O‘ngdagi to‘rt qoidani ayting: ko‘p vazifaga agent kerak emas.',
-    caseStudy: '38–45 daq. → bilan 6 bosqich: diagrammada faol vosita yonadi. Oxirida Jira AI Agent tajribasini qisqa ayting — ishlab chiqish tajribasi sifatida.',
-    dilemma: '51–55 daq. Holatni o‘qing, zal ovoz bersin. → oqibatlar, → bir haftadan keyin, → kim javob beradi.',
-    principles: '55–58 daq. Markaziy g‘oya: texnologiya konsensusdan tez. Bo‘shliqni xodim to‘ldiradi. 2–3 tamoyilni tanlab ayting.',
-    conclusion: '58–60 daq. Uch fikr. Boshidagi savolga qayting. Sayt manzilini ko‘rsating — material darsdan keyin ham ochiq.',
-    network: '7–10 daq. Misollar o‘zi almashadi: chap — kirish (matndagi belgilar), o‘ng — chiqish (toifa %). 4-misolda (park + chiroq) ishonch past — to‘xtab ayting: AI ikkilansa, ish xodimga o‘tadi.',
-    tokens: '13–15 daq. Tokenlar paydo bo‘lishini ko‘rsating; xaritada “ariza” va “murojaat” yaqinligini ayting.',
-    attention: '15–17 daq. “u” → “arizani”. So‘ng gallyutsinatsiya va 4 ta tekshiruv qadami.',
-    anatomy: '24–26 daq. Tushunchalar o‘zi aylanadi. Vositani model emas, dastur bajarishini ta’kidlang.',
+    intro: 'O‘zingizni tanishtiring: Markaziy bankdagi ishlab chiqish tajribasi (joriy etilgan deb da’vo qilmang). Zalga savol bering — qo‘l ko‘tarish bilan. Javobni eslab qoling: oxirida qaytasiz.',
+    aiMap: 'Doiralar avtomatik yonadi. LLM — DL ichidagi oila, alohida “pog‘ona” emas.',
+    learning: 'Chap: o‘qitish o‘zi boshlanadi — loss pasayadi. O‘ng: uch temperature yonma-yon. Asosiy fikr: suhbatda model o‘rganmaydi.',
+    meaning: 'Tokenlar → embedding (ariza ≈ murojaat) → attention (“u” → “arizani”). So‘ng gallyutsinatsiya va 4 ta tekshiruv qadami.',
+    law: 'Uch hujjat: ma’lumot qonuni (547), saqlash joyi (1125), AI–2030 strategiyasi (PQ-358). Strategiya — yo‘nalish, majburiyatlar boshqa qonunlarda.',
+    lawAi: 'O‘RQ-1115 — asosiy: AI xulosasi yagona asos emas. Etika qoidalari (3787) majburiy, oddiy tavsiya emas. Pastdagi uch xulosani o‘qing.',
+    agents: 'Jadvalni chapdan o‘ngga o‘qing: “yo‘lni kim belgilaydi?” — asosiy farq.',
+    agentLab: 'Chatbot javobi tayyor turadi — o‘qing. Keyin → ni bosing: har bosish agentning bitta qadami. 4-bosqichda agent find_responsible ni o‘zi tanlaydi — shu yerda to‘xtab tushuntiring. Tasdiqda bitta belgini olib tashlab ko‘rsatish mumkin; → tasdiqlaydi.',
+    useCases: 'Auditoriya tanlagan vazifa qatorini topib, AI va inson rollarini o‘qing. O‘ngdagi to‘rt qoidani ayting: ko‘p vazifaga agent kerak emas.',
+    caseStudy: '→ bilan 6 bosqich: diagrammada faol vosita yonadi. Oxirida Jira AI Agent tajribasini qisqa ayting — ishlab chiqish tajribasi sifatida.',
+    dilemma: 'Holatni o‘qing, zal ovoz bersin. → oqibatlar, → bir haftadan keyin, → kim javob beradi.',
+    principles: 'Markaziy g‘oya: texnologiya konsensusdan tez. Bo‘shliqni xodim to‘ldiradi. 2–3 tamoyilni tanlab ayting.',
+    conclusion: 'Uch fikr. Boshidagi savolga qayting. Sayt manzilini ko‘rsating — material darsdan keyin ham ochiq.',
+    network: 'Misollar o‘zi almashadi: chap — kirish (matndagi belgilar), o‘ng — chiqish (toifa %). 4-misolda (park + chiroq) ishonch past — to‘xtab ayting: AI ikkilansa, ish xodimga o‘tadi.',
+    tokens: 'Tokenlar paydo bo‘lishini ko‘rsating; xaritada “ariza” va “murojaat” yaqinligini ayting.',
+    attention: '“u” → “arizani”. So‘ng gallyutsinatsiya va 4 ta tekshiruv qadami.',
+    anatomy: 'Tushunchalar o‘zi aylanadi. Vositani model emas, dastur bajarishini ta’kidlang.',
     sources: 'Savol-javob vaqtida manbalarni ochish uchun.',
   },
 

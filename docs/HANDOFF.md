@@ -1,5 +1,11 @@
 # Technical handoff (2026-10-11)
 
+## Round 5: exact title and lesson order
+- **Exact topic name** everywhere (title, sidebar, intro): “Davlat xizmatlarida AI Agentlar (AI Agents) va ularning oddiy Chatbotlardan farqi”. In RU and EN the intro also shows a translation under it.
+- **New order** (`SLIDES` in `data.js`): AI basics → AI history (moved into chapter 2 as the bridge to agents) → chatbot vs agent → use cases → law → 2031/2036 → ethics → conclusion. Timing is still 60 minutes.
+- **Notes:** the presenter notes no longer hard-code minute ranges; the notes dialog computes them from the slide order.
+- **Speaker script (RU):** written as a Claude doc, “Текст выступления — …”.
+
 ## Round 4: AI timeline 2021 → 2036
 - The old `Future.jsx` (two slides) is replaced by three slides:
   - `AiHistory.jsx` (`timeline`): overview → 2021 … 2026 → TODAY, 7 build steps;

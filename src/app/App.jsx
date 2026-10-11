@@ -56,7 +56,7 @@ export default function App() {
   useEffect(() => { const h = () => go(readHash()); addEventListener('hashchange', h); return () => removeEventListener('hashchange', h); }, [go]);
   useEffect(() => { main.current?.scrollTo({ top: 0 }); }, [index]);
   useEffect(() => { store.set('lesson-sidebar', sidebar); }, [sidebar]);
-  useEffect(() => { saveLang(lang); document.documentElement.lang = t.htmlLang; document.title = `${t.ui.course} · Ustudy`; }, [lang]);
+  useEffect(() => { saveLang(lang); document.documentElement.lang = t.htmlLang; document.title = t.ui.course; }, [lang]);
 
   // Timers: total lecture time + time spent on each slide.
   useEffect(() => {
@@ -172,7 +172,7 @@ export default function App() {
     </div>
 
     <dialog ref={notes} className="notes-dialog" onClick={e => { if (e.target === notes.current) notes.current.close(); }}>
-      <div className="dialog-header"><span className="eyebrow">{t.ui.notesTitle} · {index + 1}</span><button className="icon-button" aria-label={t.ui.close} onClick={() => notes.current.close()}><Icon name="close" /></button></div>
+      <div className="dialog-header"><span className="eyebrow">{t.ui.notesTitle} · {index + 1} · {plannedStart(SLIDES, index) / 60}–{plannedStart(SLIDES, index) / 60 + slide.minutes} {t.ui.min}</span><button className="icon-button" aria-label={t.ui.close} onClick={() => notes.current.close()}><Icon name="close" /></button></div>
       <h2>{t.slides[slide.id].title}</h2>
       <p>{t.notes[slide.id]}</p>
       <h3>{t.ui.shortcutsTitle}</h3>
