@@ -1,0 +1,25 @@
+{
+  "name": "davlat-ai-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "build:offline": "vite build --mode offline && node scripts/offline.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser-smoke.cjs",
+    "publish": "vite build && node scripts/publish.mjs"
+  },
+  "dependencies": {
+    "@fontsource/manrope": "^5.2.8",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^7.1.7"
+  }
+}

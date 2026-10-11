@@ -1,0 +1,7 @@
+node_modules/
+dist/
+dist-offline/
+tmp/
+Content/
+test-results/
+.claude/

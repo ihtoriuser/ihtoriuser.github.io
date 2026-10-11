@@ -1,0 +1,47 @@
+# Technical handoff (2026-10-11)
+
+## Round 2: restructured as a presenter-first slide deck (current)
+
+Requested by the author: deploy as a static site to GitHub Pages; remove the PDF and use a law table instead; add a timer per slide; make the chapter panel collapsible; reduce how much has to be clicked ("show it visually and move on" — interactivity is kept but optional); fewer sub-chapters, with each slide self-contained and including its text; add Russian and English.
+
+### What changed
+- **13 slides + appendix** (was 23 scenes). Each slide carries its full explanatory text. The registry, with minutes and build steps, is in `src/content/data.js` (`SLIDES`).
+- **→ drives everything.** Slides can claim "→" presses through `ctl.current.advance()`:
+  - agent demo: 8 presses, one per agent step; at the approval gate → approves;
+  - case study: 5 steps;
+  - dilemma: 3 reveals.
+  Going back to a slide with steps shows it fully built. Elsewhere, animations cycle by themselves (`useCycle`), and a manual hover or click pauses the cycle for 15 s.
+- **Timers:** the per-slide timer (planned minutes, amber at 80%, red when over), the total against 60:00, and the plan deviation. The clock starts on the first →. `T` toggles it.
+- **Chapter panel:** collapses with `B` or the menu button, remembers its state, and becomes an overlay on mobile.
+- **Languages:** `src/i18n/{uz,ru,en}.js` hold the same shape. Russian and English deep-merge over Uzbek, so a missing key never crashes. A unit test asserts that every slide, law, event, theme and use case has text in all three. Manrope now ships its Cyrillic subset. Language is chosen with `?lang=`, the switch, or `L`, and is remembered.
+- **Law table** replaces the PDF viewer. `public/documents/ai-law-uzbekistan.pdf` (a copy) was deleted, and no PDF is published. The original stays in `Content/` (git-ignored). Russian and English titles are the author's translations; the law numbers are localised (ZRU/ЗРУ, PP/ПП).
+- **Engine** is now language-neutral: errors are codes, drafts are data, and synthetic records use category and department codes. RAG retrieval and the decision-aid helpers were removed together with their screens.
+- **Deployment:**
+  - GitHub Pages serves the root of `main`. `npm run publish` builds the site and copies it to the root (`index.html`, `assets/`, `.nojekyll`). The source entry point is `app.html`.
+  - `npm run build:offline` → `dist-offline/` uses one IIFE classic script, so `index.html` opens by double-click from `file://` (verified in Chrome: styles, fonts and the 3D canvas all render).
+- **Fixed during this round:** the URL update had put the query string after the hash (`#2?lang=uz`).
+- **Removed files:** `src/scenes/*`, `src/simulations/LearningLab.jsx`, `MeaningLab.jsx`, `src/components/UI.jsx`, `src/content/{lesson.js,legal.json,news.json}`, `src/styles/{main,scenes}.css`. Their content was migrated into `data.js`, `i18n/*` and `slides/*`.
+
+### Verification (last run)
+- `npm test`: 8/8 pass, including 60-minute timing and full 3-language coverage.
+- `npm run build` and `npm run build:offline` both succeed.
+- Browser suite: 70 renders in total (14 slides × UZ at 1920/1366/390, plus RU and EN at 1920). Results: 0 console errors, 0 horizontal overflow, and all keyboard, timer, agent, build-step and reduced-motion checks pass.
+- Fit without scrolling: at 1920×1080, all 13 lesson slides fit in all three languages, except Future in RU (about 20 px). At 1366×768 with the panel hidden, all UZ slides fit within about 10 px; RU Future scrolls about 70 px.
+
+## Round 1 (earlier the same day)
+I continued the Codex build and added:
+- 8-stage agent lab with a dynamic tool choice;
+- agent anatomy, tokens/embeddings/attention, the training loss curve and temperature;
+- use cases with the case-study architecture;
+- the verified 11-event timeline;
+- the multi-step ethics dilemma.
+
+Bug fixed: the lecture timer lost increments. See `AUDIT.md` for the state before that work.
+
+## Unresolved / unverified
+- **OpenAI Operator:** openai.com returned 403 to automated fetching. The date (2025-01-23) comes from search results that quote OpenAI's page. Open it once before the lecture.
+- **Not re-checked in round 2:** OpenAI Frontier and the five legal acts were verified by Codex and in round 1, not again.
+- **Russian and English law titles** are translations, not official texts. Lex.uz Russian pages may themselves be unofficial translations (noted on the slide).
+- **Qualitative teaching aids:** the ethics meters, the gap chart, the embedding map and the attention vectors are labelled as such.
+- **Published** to https://github.com/ihtoriuser/ihtoriuser.github.io. The previous project there (MTS Studio 201) was replaced by an ordinary commit and stays in the Git history.
+- **Projector hardware** was not tested; only browser viewports were.

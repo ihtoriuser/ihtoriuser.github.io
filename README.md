@@ -1,71 +1,105 @@
-# 🎓 MTS Studio 201 — Инструмент педагогической визуализации
+# AI agents in government services: interactive lesson
 
-**MTS Studio 201** — это интерактивное веб-приложение для создания и редактирования графических органайзеров. Инструмент разработан специально для структурирования знаний по теме **"Переобучение и Недообучение в Machine Learning"**, но легко адаптируется под любую другую тему через встроенный редактор.
+**Davlat xizmatlarida AI agentlar va ularning oddiy chatbotlardan farqi.** This is a 60-minute interactive presentation for government employees (Ustudy IT Academy, 12.10.2026). It is available in three languages: **O‘zbekcha · Русский · English**.
 
----
+It is a **static website**. There is no server, database, API key or paid service: everything runs in the browser on synthetic data. Live site: **https://ihtoriuser.github.io/**
 
-## 🚀 Как запустить
+## Structure: 13 slides + appendix, 60 minutes
 
-Приложение работает локально в браузере, установка не требуется.
+| # | Chapter | Slide | Min | → steps |
+|---|---|---|---|---|
+| 1 | Kirish | Introduction, lecturer, question for the room | 5 | |
+| 2–4 | AI qanday ishlaydi? | AI ⊃ ML ⊃ DL ⊃ LLM + 3D network · training vs inference + temperature · tokens, embeddings, attention, hallucinations | 4+4+4 | |
+| 5 | Huquqiy asoslar | Table of 5 verified acts with Lex.uz links | 5 | |
+| 6–7 | Chatbot va agent | Architecture comparison + agent anatomy · **live agent demo** | 4+6 | 8 |
+| 8–9 | Amaliy qo‘llanish | 7 use cases + “agent or automation?” · case study | 6+7 | 5 |
+| 10 | Kelajak | Timeline: facts (with sources) and forecasts | 6 | |
+| 11–12 | Etika | Dilemma · principles and the central idea | 4+3 | 3 |
+| 13 | Xulosa | Three takeaways, question, “Rahmat!” | 2 | |
+| + | Ilova | Sources and limitations | — | |
 
-1.  Убедитесь, что файлы `index.html`, `style.css` и `script.js` находятся в одной папке.
-2.  Запустите файл **`index.html`** (рекомендуются браузеры **Chrome**, **Edge**, **Firefox**).
+**How presenting works:** you press **→** (or a clicker), and that is all. Slides with steps (the agent demo, the case study, the dilemma) use the first presses to play their next step, then move on to the next slide. All other animations run by themselves. You can still click, but you never have to.
 
----
+## Controls
 
-## 🛠 Интерфейс и Управление
+| Key | Action |
+|---|---|
+| `→` `Space` `PageDown` | next step / slide (works with clickers) |
+| `←` `PageUp` | back |
+| `1`–`8` | jump to a chapter |
+| `B` | hide or show the chapter panel |
+| `T` | start / pause the timer (it also starts on the first →) |
+| `F` | full screen |
+| `N` | presenter notes for the current slide |
+| `L` | switch language UZ → RU → EN |
+| `R` | restart the current slide |
+| `M` | turn animation off / on |
 
-### 1. Навигация (Умное меню)
-*   Меню с выбором методов находится сверху.
-*   Оно **автоматически скрывается** через 3 секунды для экономии места.
-*   Чтобы вернуть меню, наведите курсор на **цветную полоску** в самом верху экрана.
+**Timers** (top bar):
+- **Slide:** time on this slide against its plan. It turns amber at 80% and red when the plan is exceeded.
+- **Total:** time against 60:00, plus how far ahead of or behind plan you are.
 
-### 2. Просмотр
-*   **Графики (Кластер, Ментальная карта, Рыба, Веер)**:
-*   Используйте **колёсико мыши** для зума (приближения/отдаления).
-    *   Зажмите левую кнопку мыши на пустом месте, чтобы перемещать холст.
-*   **Таблицы и Схемы (Синквейн, Т-схема, Лотос)**:
-    *   Используйте обычную прокрутку страницы.
+## Publishing on GitHub Pages (https://ihtoriuser.github.io/)
 
-### 3. Кнопки управления (справа снизу)
-*   `↺` — **Сброс**: Возвращает метод к исходному шаблону.
-*   `✏️` — **Редактировать**: Открывает текстовый редактор данных.
-*   `📸` — **Скачать PNG**: Сохраняет визуализацию в высоком качестве.
+Repository: https://github.com/ihtoriuser/ihtoriuser.github.io. GitHub Pages serves the root of the `main` branch, so the built site is committed to the root (`index.html`, `assets/`, `favicon.png`, `.nojekyll`). The source sits alongside it: `app.html` (the entry point), `src/` and everything else.
 
----
+To publish a change:
 
-## 📝 Как редактировать данные
+```bash
+npm run publish
+```
 
-Редактирование происходит через текстовое поле. Соблюдайте структуру!
+```bash
+git add -A
+```
 
-*   **Иерархия (Кластер, Ментальная карта)**: Используйте отступы (пробелы) для создания вложенности.
-*   **Таблицы (Синквейн, SCAMPER)**: Разделяйте колонки символом `|`.
-*   **Секции (Рыба, Венн)**: Не удаляйте ключевые слова (например, `ПРОБЛЕМА:`, `[LEFT]`), меняйте текст под ними.
+```bash
+git commit -m "Update lesson"
+```
 
----
+```bash
+git push
+```
 
-## ⚠️ Важная рекомендация по инструментам
+The site updates within 1–2 minutes. `.gitignore` excludes `Content/` (CVs, the PDF), so private files are never published.
 
-MTS Studio 201 — это учебный инструмент "всё-в-одном". Однако, для создания сверхсложных профессиональных схем или если вы столкнулись с проблемами рендеринга (например, элементы Кластера наезжают друг на друга при большом объеме текста, или качество линий вас не устраивает), рекомендуется использовать специализированные альтернативы:
+## Offline backup (if there's no internet at the venue)
 
-*   Для сложных **Кластеров и Ментальных карт**: используйте **NanoBanana**, Miro или XMind.
-*   Для научной графики: draw.io или Lucidchart.
+```bash
+npm run build:offline
+```
 
-Этот инструмент идеально подходит для быстрой генерации и защиты педагогических заданий, но для промышленного дизайна лучше подходят профильные сервисы.
+Copy `dist-offline/` to a USB stick and **double-click `index.html`** — it opens without a server or internet connection. Only the external source links need internet.
 
----
+## Development
 
-## 📚 Список реализованных методов
+```bash
+npm install
+```
 
-1.  **Синквейн** (Таблица определений)
-2.  **Кластер** (Радиальная схема связей с физической укладкой)
-3.  **Ментальная карта** (Древовидная структура)
-4.  **Т-схема** (Сравнение Плюсов и Минусов)
-5.  **SCAMPER** (Таблица креативных модификаций)
-6.  **Диаграмма Венна** (Пересечение двух множеств)
-7.  **Скелет Рыбы** (Анализ причин и фактов проблемы)
-8.  **Веер** (Матрица принятия решений с оценкой)
-9.  **Цветок Лотоса** (Генерация идей 8x8)
+```bash
+npm run dev
+```
 
----
-Разработано для курса "Методы преподавания специальных предметов".
+The dev server opens `/app.html`. The root `index.html` is the last published build.
+
+```bash
+npm test
+```
+
+Browser test (with the dev server running): `npm run test:browser`. It opens every slide in 3 languages and at 3 sizes, checks for overflow and errors, and exercises keyboard navigation, the timers, the agent demo and the build steps. Environment variables: `PLAYWRIGHT_PATH`, `PW_CHANNEL=chrome`, `TEST_URL`.
+
+## Where things live
+
+```
+src/content/data.js     slide order, minutes and steps; synthetic records; law, event and source data
+src/i18n/uz|ru|en.js    all text in three languages (missing keys fall back to Uzbek)
+src/slides/*.jsx        one component per slide
+src/simulations/        engine.js (pure logic, tested) and AgentLab.jsx
+src/app/App.jsx         shell: navigation, timers, panel, language, notes
+src/styles/app.css      design: one accent colour per chapter
+```
+
+To change a slide's text, edit `src/i18n/*.js` (the same key in all three files). To change a slide's planned time, edit `minutes` in `data.js`; the minutes must add up to 60 (a test checks this).
+
+Sources and how they were verified are in `docs/`.
