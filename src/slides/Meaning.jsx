@@ -56,28 +56,39 @@ function Attention({ s, motion }) {
   </>;
 }
 
-export default function Meaning({ t, motion }) {
+export function TokensSlide({ t, motion }) {
   const s = t.slides.meaning;
   return <div className="slide">
-    <SlideHead s={s} />
-    <div className="meaning-body">
+    <SlideHead s={t.slides.tokens} />
+    <div className="tokens-body">
       <section className="panel dark tok-panel">
         <h3>{s.tokTitle}</h3>
         <Tokens s={s} motion={motion} />
-        <p className="panel-text">{s.tokText} <span className="muted">{s.tokNote}</span></p>
+        <p className="panel-text">{s.tokText}</p>
+        <p className="panel-text muted">{s.tokNote}</p>
       </section>
       <section className="panel dark">
         <h3>{s.embTitle}</h3>
         <EmbedMap s={s} motion={motion} />
         <p className="panel-text">{s.embText}</p>
       </section>
+    </div>
+    <p className="caption">{s.note}</p>
+  </div>;
+}
+
+export function AttentionSlide({ t, motion }) {
+  const s = t.slides.meaning;
+  return <div className="slide">
+    <SlideHead s={t.slides.attention} />
+    <div className="attention-body">
       <section className="panel dark">
         <h3>{s.attTitle}</h3>
         <Attention s={s} motion={motion} />
         <p className="panel-text muted"><code>{s.attFormula}</code></p>
       </section>
       <section className="panel hal-panel">
-        <h3><Icon name="search" size={20} />{s.halTitle}</h3>
+        <h3><Icon name="search" size={22} />{s.halTitle}</h3>
         <p>{s.halText}</p>
         <ol>{s.halChecks.map(c => <li key={c}>{c}</li>)}</ol>
       </section>

@@ -4,7 +4,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
 const base = process.env.TEST_URL || 'http://127.0.0.1:5173/app.html';
-const SLIDES = 14;
+const SLIDES = 19;
 
 (async () => {
   fs.mkdirSync('test-results', { recursive: true });
@@ -28,16 +28,24 @@ const SLIDES = 14;
 
   await page.setViewportSize({ width: 1920, height: 1080 });
   // 2. No PDF anywhere; the legal slide is a table with 5 laws and Lex.uz links.
-  await open(5);
-  assert.equal(await page.locator('.law-table tbody tr').count(), 5);
-  assert.equal(await page.locator('a[href*="lex.uz"]').count(), 5);
+  await open(7);
+  assert.equal(await page.locator('.law-table tbody tr').count(), 3);
+  await open(8);
+  assert.equal(await page.locator('.law-table tbody tr').count(), 2);
+  assert.equal(await page.locator('.law-takeaways > div').count(), 3);
   assert.equal(await page.locator('object, a[href$=".pdf"]').count(), 0);
 
   // 3. Keyboard: → / ← navigation, chapter digits, sidebar toggle, notes, language cycling.
   await open(1); await page.locator('main').focus();
   await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#2'));
   await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#1'));
-  await page.keyboard.press('Digit4'); assert.ok(page.url().endsWith('#6'));
+  await page.keyboard.press('Digit4'); assert.ok(page.url().endsWith('#9'));
+  await page.getByRole('button', { name: 'Boshiga' }).click(); assert.ok(page.url().endsWith('#1'));
+  await page.keyboard.press('Digit4'); await page.keyboard.press('Home'); assert.ok(page.url().endsWith('#1'));
+  await open(3); assert.equal(await page.locator('.in-node').count(), 3); assert.equal(await page.locator('.out-node').count(), 3);
+  await page.locator('.examples button').nth(3).click(); assert.equal(await page.locator('.verdict.unsure').count(), 1);
+  await page.locator('.examples button').nth(0).click(); assert.equal(await page.locator('.verdict.sure').count(), 1);
+  await open(6); await page.locator('main').focus(); await page.keyboard.press('Digit4');
   const sidebarBefore = await page.locator('.app.with-sidebar').count();
   await page.keyboard.press('KeyB'); assert.notEqual(await page.locator('.app.with-sidebar').count(), sidebarBefore);
   await page.keyboard.press('KeyB');
@@ -55,14 +63,14 @@ const SLIDES = 14;
   await page.keyboard.press('KeyT');
 
   // 5. Agent lab: → drives the agent; it picks find_responsible itself; → at the gate approves; then the next slide.
-  await open(7); await page.locator('main').focus();
-  for (let i = 0; i < 8; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#7'), `press ${i}`); }
+  await open(11); await page.locator('main').focus();
+  for (let i = 0; i < 8; i++) { await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#11'), `press ${i}`); }
   assert.equal(await page.locator('.call code', { hasText: 'find_responsible' }).count(), 1);
   assert.equal(await page.locator('.call code', { hasText: 'send_notice' }).count(), 3);
   assert.equal(await page.locator('.stats').count(), 1);
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#8'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#12'));
   // Mouse path: deny permission, then reject at the gate.
-  await open(7);
+  await open(11);
   await page.getByRole('button', { name: 'Keyingi qadam' }).click(); await page.getByRole('button', { name: 'Keyingi qadam' }).click();
   await page.locator('.stage input[type=checkbox]').uncheck(); await page.getByRole('button', { name: 'Keyingi qadam' }).click();
   assert.equal(await page.locator('.call.denied').count(), 1); assert.equal(await page.getByRole('alert').count(), 1);
@@ -73,17 +81,17 @@ const SLIDES = 14;
   assert.equal(await page.locator('.call code', { hasText: 'send_notice' }).count(), 0);
 
   // 6. Build steps: case study (5) and dilemma (3) consume → before moving on.
-  await open(9); await page.locator('main').focus();
+  await open(13); await page.locator('main').focus();
   for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight');
-  assert.ok(page.url().endsWith('#9')); assert.ok((await page.locator('.case-steps li.on').innerText()).startsWith('6.'));
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#10'));
-  await open(11); await page.locator('main').focus();
+  assert.ok(page.url().endsWith('#13')); assert.ok((await page.locator('.case-steps li.on').innerText()).startsWith('6.'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#14'));
+  await open(16); await page.locator('main').focus();
   assert.equal(await page.locator('.who.shown').count(), 0);
   for (let i = 0; i < 3; i++) await page.keyboard.press('ArrowRight');
   assert.equal(await page.locator('.who.shown').count(), 1);
-  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#12'));
+  await page.keyboard.press('ArrowRight'); assert.ok(page.url().endsWith('#17'));
   // Going back lands on the fully built dilemma.
-  await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#11')); assert.equal(await page.locator('.who.shown').count(), 1);
+  await page.keyboard.press('ArrowLeft'); assert.ok(page.url().endsWith('#16')); assert.equal(await page.locator('.who.shown').count(), 1);
 
   // 7. Reduced motion is respected.
   const reduced = await browser.newPage({ reducedMotion: 'reduce' }); await reduced.goto(base); assert.equal(await reduced.locator('.motion-paused').count(), 1); await reduced.close();

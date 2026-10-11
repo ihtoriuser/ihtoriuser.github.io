@@ -156,7 +156,6 @@ export default function App() {
       </main>
 
       <footer className="lesson-footer">
-        <button className="icon-button" aria-label={t.ui.prev} onClick={prev} disabled={index === 0 && !info?.[0]}><Icon name="back" /></button>
         <div className="progress" aria-label={`${t.ui.slide} ${index + 1} / ${SLIDES.length}`}>
           {SLIDES.map((s, i) => <button key={s.id} className={`${i < index ? 'done' : ''} ${i === index ? 'now' : ''} ${s.appendix ? 'appendix' : ''}`} style={{ flexGrow: Math.max(1, s.minutes) }} title={`${i + 1}. ${t.slides[s.id].title}`} aria-label={`${i + 1}. ${t.slides[s.id].title}`} onClick={() => go(i)}>
             {i === index && slideSecs > 0 && planned > 0 && <i style={{ width: `${Math.min(100, pct * 100)}%` }} />}
@@ -164,7 +163,11 @@ export default function App() {
         </div>
         <span className="page-number">{slide.appendix ? t.ui.appendix : `${index + 1} / ${lessonSlides}`}</span>
         {info && info[1] > 0 && <span className="build-dots" aria-label={`${t.ui.step} ${info[0]} / ${info[1]}`}>{Array.from({ length: info[1] }, (_, i) => <i key={i} className={i < info[0] ? 'on' : ''} />)}</span>}
-        <button className="button primary next-button" onClick={next} disabled={index === SLIDES.length - 1}>{t.ui.next}<Icon name="arrow" size={18} /></button>
+        <div className="nav-buttons">
+          <button className="button start-button" onClick={() => go(0)} disabled={index === 0} title={`${t.ui.start} (Home)`}><Icon name="first" size={16} /><span>{t.ui.start}</span></button>
+          <button className="button prev-button" aria-label={t.ui.prev} title={`${t.ui.prev} (←)`} onClick={prev} disabled={index === 0 && !info?.[0]}><Icon name="back" size={18} /></button>
+          <button className="button primary next-button" onClick={next} disabled={index === SLIDES.length - 1} title={`${t.ui.next} (→)`}>{t.ui.next}<Icon name="arrow" size={18} /></button>
+        </div>
       </footer>
     </div>
 

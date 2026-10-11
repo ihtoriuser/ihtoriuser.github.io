@@ -9,7 +9,7 @@ const MAX = SLIDES.find(x => x.id === 'dilemma').builds;
 export default function Dilemma(props) {
   const { t } = props;
   const s = t.slides.dilemma;
-  const [b, setB] = useBuild(props, MAX);
+  const [b] = useBuild(props, MAX);
   return <div className="slide slide-dilemma">
     <SlideHead s={s} />
     <div className="case-banner">
@@ -26,7 +26,6 @@ export default function Dilemma(props) {
     </article>)}</div>
     <div className={`truth ${b >= 2 ? 'shown' : ''}`}><b>{s.truthTitle}</b> {s.truth}</div>
     <div className={`who ${b >= 3 ? 'shown' : ''}`}><h3>{s.whoTitle}</h3><p>{s.who}</p></div>
-    {b < MAX && <button className="button ghost" aria-label={t.ui.next} onClick={() => setB(b + 1)}>→</button>}
     <p className="caption">{s.note}</p>
   </div>;
 }

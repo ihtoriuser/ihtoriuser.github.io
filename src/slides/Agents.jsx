@@ -22,11 +22,8 @@ function Anatomy({ s, sel, pick }) {
   </svg>;
 }
 
-export default function Agents({ t, motion }) {
+export default function Agents({ t }) {
   const s = t.slides.agents;
-  const [ci, pickIndex] = useCycle(s.concepts.length, 3000, motion);
-  const sel = s.concepts[ci].id;
-  const pick = id => pickIndex(s.concepts.findIndex(c => c.id === id));
   return <div className="slide">
     <SlideHead s={s} />
     <div className="table-wrap">
@@ -36,13 +33,22 @@ export default function Agents({ t, motion }) {
       </table>
     </div>
     <div className="autonomy-scale"><span>{s.autonomy[0]}</span><div className="scale-track">{s.types.map((_, i) => <i key={i} />)}</div><span>{s.autonomy[1]}</span></div>
+    <p className="key-line">{s.key}</p>
+    <SourceLink href={SCIENCE[5].url}>{SCIENCE[5].source} · Building effective agents</SourceLink>
+  </div>;
+}
+
+export function AnatomySlide({ t, motion }) {
+  const s = t.slides.agents;
+  const [ci, pickIndex] = useCycle(s.concepts.length, 3000, motion);
+  const sel = s.concepts[ci].id;
+  const pick = id => pickIndex(s.concepts.findIndex(c => c.id === id));
+  return <div className="slide">
+    <SlideHead s={t.slides.anatomy} />
     <div className="agents-body">
       <Anatomy s={s} sel={sel} pick={pick} />
       <div className="concepts">
-        <h3>{s.anatomyTitle}</h3>
         <dl>{s.concepts.map(c => <div key={c.id} className={c.id === sel ? 'on' : ''} onMouseEnter={() => pick(c.id)}><dt>{c.title}</dt><dd>{c.text}</dd></div>)}</dl>
-        <p className="key-line">{s.key}</p>
-        <SourceLink href={SCIENCE[5].url}>{SCIENCE[5].source} · Building effective agents</SourceLink>
       </div>
     </div>
   </div>;

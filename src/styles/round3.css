@@ -1,0 +1,174 @@
+/* =================== Round 3: bigger type, split slides, labelled network, clear timeline =================== */
+/* Footer: start · back · next together on the right */
+.nav-buttons { display: flex; gap: 6px; align-items: center; }
+.nav-buttons .button { min-height: 42px; }
+.prev-button { padding: 10px 14px; }
+.start-button span { font-size: 13px; }
+img.avatar { object-fit: cover; padding: 0; border: 3px solid var(--accent); width: 64px; height: 64px; }
+img.avatar.big { width: 92px; height: 92px; margin-bottom: 12px; border-color: #ffd38a; }
+
+/* AI map (no 3D now): big rings + readable list */
+.aimap-body { grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(20px, 3vw, 56px); }
+.aimap-body .rings { max-height: 58vh; max-width: 58vh; justify-self: center; }
+.level-list li { padding: 12px 16px; }
+.level-list b { font-size: 1.15em; }
+.level-list p { font-size: 1em; color: var(--ink); }
+.level-list em { display: block; font-size: .92em; margin-top: 2px; }
+.level-list em:before { content: '→ '; }
+.level-list .tag { width: 52px; height: 32px; font-size: 14px; }
+
+/* Neural network with concrete input and output */
+.examples { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.examples button { text-align: left; padding: 10px 14px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); font-weight: 700; font-size: 1em; line-height: 1.35; transition: all .25s; }
+.examples button span { display: block; font-size: .72em; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-bottom: 2px; }
+.examples button.on { background: var(--panel); color: #fff; border-color: var(--panel); box-shadow: 0 10px 24px -14px #000; }
+.examples button.on span { color: #ffd38a; }
+.net-wrap { position: relative; background: var(--panel); border-radius: 18px; padding: 6px 10px; }
+.net-svg { width: 100%; display: block; max-height: 46vh; }
+.net-svg .edge { stroke: #35587c; opacity: .55; }
+.net-svg .edge.live { stroke: #ffd38a; opacity: 1; stroke-dasharray: 8 6; animation: dash 3s linear infinite; }
+.net-svg .edge.live.late { stroke: #ff9f7a; }
+.in-node circle { fill: #24456a; stroke: #4f7397; stroke-width: 2; transition: all .3s; }
+.in-node.on circle { fill: #5fd1c1; stroke: #fff; }
+.in-node .val { fill: #fff; font-size: 18px; font-weight: 800; }
+.in-node.on .val { fill: #0d2a26; }
+.in-node .feat { fill: #e6eef2; font-size: 17px; font-weight: 700; }
+.in-node.on .feat { fill: #8ff0df; }
+.in-node .sub { fill: #8fb0c7; font-size: 14px; }
+.h-node circle { fill: #b3a4ff; stroke: #e2dcff; stroke-width: 2; transition: fill-opacity .4s; }
+.h-node text { fill: #fff; font-size: 13px; font-weight: 800; paint-order: stroke; stroke: #2b2160; stroke-width: 3px; }
+.out-node .pct { fill: #0c2235; font-size: 15px; font-weight: 800; }
+.out-node .cls { fill: #e6eef2; font-size: 18px; font-weight: 700; }
+.out-node.best .cls { fill: #fff; font-weight: 800; }
+.out-node .track { fill: #2a4566; }
+.out-node .fill { transition: width .5s; }
+.verdict { position: absolute; right: 18px; bottom: 14px; padding: 8px 14px; border-radius: 10px; display: flex; flex-direction: column; font-size: .95em; }
+.verdict.sure { background: #2fb59d; color: #06221d; }
+.verdict.unsure { background: #ff9f7a; color: #3a1608; }
+.verdict span { font-size: .9em; font-weight: 700; }
+.layer-legend { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.layer-legend li { padding: 8px 12px; border-radius: 10px; background: var(--paper); border: 1px solid var(--line); font-weight: 700; font-size: .95em; }
+.layer-legend li:nth-child(1) { border-top: 4px solid #5fd1c1; }
+.layer-legend li:nth-child(2) { border-top: 4px solid #b3a4ff; }
+.layer-legend li:nth-child(3) { border-top: 4px solid #ffc95e; }
+.explain { font-size: 1.02em; }
+
+/* Tokens / attention split slides */
+.tokens-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
+.tokens-body .tk { font-size: clamp(18px, 1.6vw, 28px); padding: 10px 14px; }
+.tokens-body .vec { height: 52px; }
+.tokens-body .vec i { width: 8px; }
+.tokens-body .token-chain { gap: 14px; margin: 10px 0; }
+.tokens-body .embed-map { max-height: 44vh; }
+.tokens-body .pt text { font-size: 15px; }
+.attention-body { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 14px; align-items: stretch; }
+.attention-body .attention-svg text { font-size: 15px; }
+.attention-body .attention-svg text.pct { font-size: 12.5px; }
+.attention-body .att-text { font-size: 1.15em; }
+.hal-panel { grid-row: auto !important; grid-column: auto !important; }
+.hal-panel p { font-size: 1.05em; }
+.hal-panel li { font-size: 1.02em; padding: 10px 12px; }
+.panel h3 { font-size: clamp(16px, 1.2vw, 22px); }
+.panel-text { font-size: 1em; }
+
+/* Anatomy slide: bigger concept list */
+.anatomy-svg { max-height: 58vh; }
+.concepts dl { grid-template-columns: 1fr; gap: 7px; }
+.concepts dl > div:last-child { grid-column: auto; }
+.concepts dt { font-size: 1.05em; }
+.concepts dd { font-size: .95em; }
+.anat-node text { font-size: 15px; }
+
+/* Timeline: years left → right, today at the end */
+.tl-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .85em; font-weight: 700; color: var(--muted); }
+.tl-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.tl-legend i { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.tl-grid { display: grid; gap: 10px; align-items: start; }
+.tl-year { animation: rise .5s ease both; animation-delay: var(--d); min-width: 0; }
+.tl-year header { position: relative; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.tl-year header b { font-size: clamp(22px, 2vw, 36px); font-weight: 800; color: var(--accent-ink); }
+.tl-axis { flex: 1; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 40%, transparent)); }
+.tl-cards { display: grid; gap: 8px; }
+.tl-cards.two { grid-template-columns: 1fr 1fr; }
+.tl-cards article { background: var(--paper); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 10px; padding: 9px 11px; display: grid; gap: 3px; }
+.tl-cards small { font-size: .74em; font-weight: 800; color: var(--muted); }
+.tl-cards b { font-size: .98em; line-height: 1.3; }
+.tl-cards p { font-size: .84em; line-height: 1.4; color: #3e4c55; }
+.tl-cards .source-link { font-size: 12px; }
+.tl-today { align-self: stretch; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 0 12px; border-left: 3px dashed #e0a020; color: #b07400; animation: rise .5s ease both; animation-delay: .7s; }
+.tl-today header { display: flex; flex-direction: column; align-items: center; }
+.tl-today b { font-size: clamp(18px, 1.5vw, 26px); font-weight: 800; }
+.tl-today span { font-size: .85em; font-weight: 700; }
+
+/* Today / +5 / +10 */
+.horizon { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; position: relative; }
+.hz { border-radius: 18px; padding: clamp(14px, 1.4vw, 24px); animation: rise .5s ease both; animation-delay: var(--d); position: relative; }
+.hz:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 30px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-ink); color: #fff; font-weight: 800; z-index: 1; }
+.hz header { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.hz h2 { font-size: clamp(22px, 2vw, 36px); }
+.hz header b { font-size: 1.05em; color: var(--muted); }
+.hz ul { display: grid; gap: 9px; }
+.hz li { padding: 10px 12px; border-radius: 10px; font-size: 1em; line-height: 1.45; }
+.hz li .source-link { margin-left: 4px; font-size: 12px; }
+.hz-0 { background: var(--paper); border: 1px solid var(--line); border-top: 6px solid var(--teal); }
+.hz-0 li { background: #eef7f2; }
+.hz-1, .hz-2 { background: repeating-linear-gradient(135deg, #fbf7ee, #fbf7ee 14px, #f5efe0 14px, #f5efe0 28px); border: 2px dashed #e0a020; }
+.hz-2 { border-color: var(--pink); }
+.hz-1 li, .hz-2 li { background: #fffdf6; font-style: italic; }
+.badge { font-size: 12px; padding: 3px 9px; }
+
+@media (max-width: 1100px) {
+  .examples { grid-template-columns: 1fr 1fr; }
+  .tokens-body, .attention-body, .horizon, .layer-legend { grid-template-columns: 1fr; }
+  .hz:not(:last-child)::after { display: none; }
+  .tl-grid { grid-template-columns: 1fr !important; }
+  .tl-today { border-left: 0; border-top: 3px dashed #e0a020; padding-top: 10px; }
+  .aimap-body { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .examples { grid-template-columns: 1fr; }
+  .start-button span { display: none; }
+  .tl-cards.two { grid-template-columns: 1fr; }
+  .verdict { position: static; margin: 6px; }
+}
+@media (max-height: 820px) and (min-width: 901px) {
+  :root { --fs-body: clamp(15px, 1.1vw, 18px); }
+  .slide-head h1, .slide > h1 { font-size: clamp(24px, 2.3vw, 38px); }
+  .slide-head .lead { font-size: clamp(15px, 1.15vw, 19px); }
+  .net-svg { max-height: 40vh; }
+  .tl-cards article { padding: 6px 9px; }
+  .hz li { padding: 7px 10px; }
+}
+
+/* fixes after review */
+.tokens-body .tok-panel { grid-column: auto; }
+.tl-year.cont header b { opacity: .35; }
+.table-title { font-size: clamp(17px, 1.3vw, 24px); }
+.net-svg { max-height: 42vh; }
+.net-svg { max-height: 39vh; }
+.examples button { padding: 8px 12px; }
+.tl-cards p { font-size: .8em; }
+.tl-cards b { font-size: .93em; }
+.tl-cards article { gap: 2px; }
+.tl-legend { font-size: .8em; }
+.option .reveal p { font-size: .9em; }
+.option { gap: 8px; }
+
+/* readability */
+.presenter-card li { font-size: .88em; }
+.presenter-card > div > span { font-size: .9em; }
+.presenter-card strong { font-size: 1.15em; }
+.presenter-card small { font-size: .78em; }
+.ask-card b { font-size: 1em; }
+.ask-card span { font-size: .88em; }
+img.avatar { width: 84px; height: 84px; }
+.law-table { font-size: clamp(15px, 1.02vw, 19px) !important; }
+.law-takeaways p { font-size: 1.05em; }
+.uc-table { font-size: clamp(15px, 1vw, 19px) !important; }
+.rule b { font-size: 1.02em; }
+@media (max-height: 820px) and (min-width: 901px) {
+  .tl-year header { margin-bottom: 6px; }
+  .tl-year header b { font-size: 24px; }
+  .tl-cards { gap: 6px; }
+  .tl-today b { font-size: 18px; }
+}

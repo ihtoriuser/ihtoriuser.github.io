@@ -1,5 +1,16 @@
 # Technical handoff (2026-10-11)
 
+## Round 3 (author feedback)
+- **Navigation:** a “Boshiga / В начало / To start” button (and `Home`) jumps to slide 1. The start, back and next buttons now sit together on the right of the footer.
+- **Avatar:** `Content/ava.jpg` was cropped to a face square and saved as `public/ava.jpg`. It appears in the intro presenter card and on the final “Rahmat!” card.
+- **Larger type** everywhere (base `--fs-body` is now 15–20 px; tables, captions and labels raised). The short-screen rules no longer shrink text below 15 px.
+- **Neural network:** the 3D model and the `three` dependency were removed. `slides/Network.jsx` shows concrete inputs (3 text features of a citizen request, 0/1), 4 hidden ReLU neurons and 3 output categories with softmax %. The forward pass is real. 4 examples cycle automatically; the mixed example shows low confidence, so the case goes to an officer.
+- **Future, split in two:**
+  - `timeline`: years from left to right, with 2024 split into two half-year columns; each card has a date, title, short text and source; “today” sits at the end.
+  - `future`: three columns — today (facts with sources), +5 years and +10 years (forecast, visually distinct) — plus “what does not change”.
+- **Split slides** (so everything fits): AI map | network; tokens | attention; law (data & strategy) | lawAi (AI rules + takeaways); agents | anatomy; timeline | future. That gives 18 lesson slides and still 60 minutes.
+- **Fit check:** at 1920×1080 and 1366×768, all slides in UZ, RU and EN fit; the worst case scrolls about 12 px.
+
 ## Round 2: restructured as a presenter-first slide deck (current)
 
 Requested by the author: deploy as a static site to GitHub Pages; remove the PDF and use a law table instead; add a timer per slide; make the chapter panel collapsible; reduce how much has to be clicked ("show it visually and move on" — interactivity is kept but optional); fewer sub-chapters, with each slide self-contained and including its text; add Russian and English.

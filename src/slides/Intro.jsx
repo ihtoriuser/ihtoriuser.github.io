@@ -19,7 +19,7 @@ export default function Intro({ t }) {
     <div className="intro-side">
       <div className="intro-art"><World label={t.ui.course} /></div>
       <div className="presenter-card">
-        <div className="avatar">IB</div>
+        <img className="avatar" src="./ava.jpg" alt="Ihtiyorjon Bahramov" />
         <div>
           <strong>Ihtiyorjon Bahramov</strong><span>{s.role}</span>
           <ul>{s.exp.map(e => <li key={e}>{e}</li>)}</ul>

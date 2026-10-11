@@ -7,4 +7,5 @@ import '@fontsource/manrope/700.css';
 import '@fontsource/manrope/800.css';
 import App from './app/App.jsx';
 import './styles/app.css';
+import './styles/round3.css';
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);

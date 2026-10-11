@@ -4,19 +4,19 @@
 
 It is a **static website**. There is no server, database, API key or paid service: everything runs in the browser on synthetic data. Live site: **https://ihtoriuser.github.io/**
 
-## Structure: 13 slides + appendix, 60 minutes
+## Structure: 18 slides + appendix, 60 minutes
 
-| # | Chapter | Slide | Min | → steps |
-|---|---|---|---|---|
-| 1 | Kirish | Introduction, lecturer, question for the room | 5 | |
-| 2–4 | AI qanday ishlaydi? | AI ⊃ ML ⊃ DL ⊃ LLM + 3D network · training vs inference + temperature · tokens, embeddings, attention, hallucinations | 4+4+4 | |
-| 5 | Huquqiy asoslar | Table of 5 verified acts with Lex.uz links | 5 | |
-| 6–7 | Chatbot va agent | Architecture comparison + agent anatomy · **live agent demo** | 4+6 | 8 |
-| 8–9 | Amaliy qo‘llanish | 7 use cases + “agent or automation?” · case study | 6+7 | 5 |
-| 10 | Kelajak | Timeline: facts (with sources) and forecasts | 6 | |
-| 11–12 | Etika | Dilemma · principles and the central idea | 4+3 | 3 |
-| 13 | Xulosa | Three takeaways, question, “Rahmat!” | 2 | |
-| + | Ilova | Sources and limitations | — | |
+| # | Chapter | Slides | Min |
+|---|---|---|---|
+| 1 | Kirish | Introduction, lecturer (photo), question for the room | 5 |
+| 2–6 | AI qanday ishlaydi? | AI ⊃ ML ⊃ DL ⊃ LLM · labelled network (request text → category %) · training vs inference · tokens and embeddings · attention and hallucinations | 2+3+3+2+2 |
+| 7–8 | Huquqiy asoslar | Personal data and strategy (table) · AI-specific rules + takeaways | 2+3 |
+| 9–11 | Chatbot va agent | Comparing 5 architectures · agent anatomy · **live demo** (8 × →) | 2+2+6 |
+| 12–13 | Amaliy qo‘llanish | 7 use cases + rules · case study (5 × →) | 6+7 |
+| 14–15 | Kelajak | Timeline 2021 → today (facts with sources) · today / +5 / +10 years (forecast) | 3+3 |
+| 16–17 | Etika | Dilemma (3 × →) · principles and the central idea | 4+3 |
+| 18 | Xulosa | Three takeaways, question, “Rahmat!” | 2 |
+| + | Ilova | Sources and limitations | — |
 
 **How presenting works:** you press **→** (or a clicker), and that is all. Slides with steps (the agent demo, the case study, the dilemma) use the first presses to play their next step, then move on to the next slide. All other animations run by themselves. You can still click, but you never have to.
 
@@ -26,6 +26,7 @@ It is a **static website**. There is no server, database, API key or paid servic
 |---|---|
 | `→` `Space` `PageDown` | next step / slide (works with clickers) |
 | `←` `PageUp` | back |
+| `Home` or the **Boshiga** button | go to slide 1 |
 | `1`–`8` | jump to a chapter |
 | `B` | hide or show the chapter panel |
 | `T` | start / pause the timer (it also starts on the first →) |
