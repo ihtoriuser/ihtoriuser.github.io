@@ -1,6 +1,6 @@
 import { demoRecords } from '../content/data.js';
 
-export const DEMO_DATE = '2026-10-11';
+export const DEMO_DATE = '2026-10-12';
 
 /* ---------- Agent simulation ----------
  * Stages: 0 understand, 1 choose tool, 2 query, 3 analyse (+ dynamic tool choice),

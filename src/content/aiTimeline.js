@@ -2,7 +2,7 @@
  * Historical milestones were checked against primary sources on 2026-10-11 (see docs/timeline-audit.md).
  * status: what kind of event it was — never mix a research announcement with general availability. */
 
-export const REFERENCE_DATE = '2026-10-11';
+export const REFERENCE_DATE = '2026-10-12';
 export const CATEGORIES = [
   { id: 'llm', color: '#8b7cf6' },
   { id: 'agents', color: '#ff7a59' },

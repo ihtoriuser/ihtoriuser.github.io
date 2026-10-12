@@ -12,7 +12,7 @@ export default {
   },
   ui: {
     overview: 'Overview', all: 'All', filter: 'Area', sources: 'Sources', close: 'Close', reset: 'Reset',
-    today: 'TODAY', todayDate: '11.10.2026', todayNote: 'The date of the lecture. Everything after it is forecast.',
+    today: 'TODAY', todayDate: '12.10.2026', todayNote: 'The date of the lecture. Everything after it is forecast.',
     futureBanner: 'FUTURE FORECASTS — THESE ARE NOT ESTABLISHED FACTS',
     labels: { fact: 'Historical fact', forecast: 'Forecast', possibility: 'Possibility', risk: 'Risk or limitation' },
     fields: { what: 'What happened', tech: 'What changed technically', why: 'Why it matters', gov: 'For public service', assumption: 'Assumption', obstacle: 'Main obstacle', benefits: 'Possible benefits', risks: 'Risks and limitations' },

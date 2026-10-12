@@ -12,7 +12,7 @@ export default {
   },
   ui: {
     overview: 'Umumiy ko‘rinish', all: 'Hammasi', filter: 'Yo‘nalish', sources: 'Manbalar', close: 'Yopish', reset: 'Qayta boshlash',
-    today: 'BUGUN', todayDate: '11.10.2026', todayNote: 'Darsning sanasi. Bundan keyingi hamma narsa — prognoz.',
+    today: 'BUGUN', todayDate: '12.10.2026', todayNote: 'Darsning sanasi. Bundan keyingi hamma narsa — prognoz.',
     futureBanner: 'KELAJAK PROGNOZLARI — BU ANIQLANGAN FAKTLAR EMAS',
     labels: { fact: 'Tarixiy fakt', forecast: 'Prognoz', possibility: 'Taxminiy imkoniyat', risk: 'Xavf yoki cheklov' },
     fields: { what: 'Nima bo‘ldi', tech: 'Texnologik o‘zgarish', why: 'Nega muhim', gov: 'Davlat xizmati uchun', assumption: 'Faraz', obstacle: 'Asosiy to‘siq', benefits: 'Mumkin bo‘lgan foyda', risks: 'Xavf yoki cheklov' },
